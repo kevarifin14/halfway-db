@@ -1,5 +1,5 @@
 module V1
-  class SessionSerializer < ActiveModel::Serializer
+  class SessionsSerializer < ActiveModel::Serializer
 
     attributes :email, :token_type, :user_id, :access_token
 

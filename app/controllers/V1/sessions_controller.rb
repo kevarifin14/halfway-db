@@ -1,4 +1,5 @@
-require '/Users/Kevin/workspace/halfway-db/app/serializers/V1/sessions_serializer.rb'
+require "./app/serializers/V1/sessions_serializer"
+
 module V1
   class SessionsController < ApplicationController
     skip_before_action :authenticate_user_from_token!
@@ -9,7 +10,7 @@ module V1
 
       if @user.valid_password?(params.fetch(:password))
         sign_in :user, @user
-        render json: @user, serializer: SessionSerializer, root: nil
+        render json: @user, serializer: V1::SessionsSerializer, root: nil
       else
         invalid_login_attempt
       end
