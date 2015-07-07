@@ -16,5 +16,8 @@ create_user!(
   username: 'user',
 )
 
-# curl localhost:3000/v1/login --data "email=foo@bar.com&username=user&password=Password1"
+create_user!(
+    email: 'kevarifin14@gmail.com',
+  username: 'kevarifin14',
 
+)

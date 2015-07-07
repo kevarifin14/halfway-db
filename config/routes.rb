@@ -1,8 +1,15 @@
+# curl halfway-db.herokuapp.com/v1/login --data "email=foo@bar.com&username=user&password=Password1"
+# curl localhost:3000/v1/login --data "email=foo@bar.com&username=user&password=Password1"
+# curl localhost:3000/v1/signup --data "email=foo@bars.com&username=users&password=Password1&password_confirmation=Password1"
+# curl halfway-db.herokuapp.com/v1/signup --data "email=foo@bars.com&username=users&password=Password1&password_confirmation=Password1"
+
+
 Rails.application.routes.draw do
   devise_for :user, only: []
 
   namespace :v1, defaults: { format: :json } do
     resource :login, only: [:create], controller: :sessions
+    resource :signup, only: [:create], controller: :registrations
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
