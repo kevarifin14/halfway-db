@@ -17,7 +17,7 @@ create_user!(
 )
 
 create_user!(
-    email: 'kevarifin14@gmail.com',
+  email: 'kevarifin14@gmail.com',
   username: 'kevarifin14',
 
 )

@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   validates :email, presence: true
 
+  has_and_belongs_to_many :friends,
+                          class_name: 'User',
+                          join_table: :friendships,
+                          foreign_key: :user_id,
+                          association_foreign_key: :friend_user_id
+
   private
 
   def update_access_token!
