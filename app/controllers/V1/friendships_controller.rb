@@ -2,6 +2,10 @@ module V1
   class FriendshipsController < ApplicationController
     skip_before_action :authenticate_user_from_token!
 
+    def index
+      render json: user.friends
+    end
+
     def create
       user.friends.append(friend)
       friend.friends.append(user)

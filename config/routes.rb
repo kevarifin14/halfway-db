@@ -5,13 +5,16 @@
 
 
 Rails.application.routes.draw do
-  devise_for :user, only: []
+  shallow do
+    devise_for :user, only: []
 
-  namespace :v1, defaults: { format: :json } do
-    resource :login, only: [:create], controller: :sessions
-    resource :signup, only: [:create], controller: :registrations
-    resources :users, only: [:index]
-    resources :friendships, only: [:create]
+    namespace :v1, defaults: { format: :json } do
+      resource :login, only: [:create], controller: :sessions
+      resource :signup, only: [:create], controller: :registrations
+      resources :users, only: [:index] do
+        resources :friendships, only: [:index, :create]
+      end
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
