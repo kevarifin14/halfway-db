@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
                           join_table: :friendships,
                           foreign_key: :user_id,
                           association_foreign_key: :friend_user_id
+  has_many :memberships
+  has_many :groups, through: :memberships
 
   private
 

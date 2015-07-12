@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resource :signup, only: [:create], controller: :registrations
       resources :users, only: [:index] do
         resources :friendships, only: [:index, :create]
+        resources :groups, only: [:index, :create]
       end
     end
   end
