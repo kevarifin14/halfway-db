@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :groups, through: :memberships
 
+  has_many :invitations
+  has_many :events, through: :invitations
+
   private
 
   def update_access_token!

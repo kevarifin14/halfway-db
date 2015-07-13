@@ -4,7 +4,9 @@ RSpec.describe User do
   describe 'associations' do
     it { is_expected.to have_and_belong_to_many(:friends).class_name('User') }
     it { is_expected.to have_many(:memberships) }
+    it { is_expected.to have_many(:invitations) }
     it { is_expected.to have_many(:groups).through(:memberships) }
+    it { is_expected.to have_many(:events).through(:invitations) }
   end
 
   describe 'columns' do

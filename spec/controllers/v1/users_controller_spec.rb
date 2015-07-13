@@ -12,10 +12,10 @@ RSpec.describe V1::UsersController do
     it 'displays all users in a json hash' do
       body = JSON.parse(response.body)
 
-      expect(body[0]).to include("username" => first_user.username)
-      expect(body[0]).to include("email" => first_user.email)
-      expect(body[1]).to include("username" => second_user.username)
-      expect(body[1]).to include("email" => second_user.email)
+      expect(body[0]).to include('username' => first_user.username)
+      expect(body[0]).to include('email' => first_user.email)
+      expect(body[1]).to include('username' => second_user.username)
+      expect(body[1]).to include('email' => second_user.email)
     end
   end
 end

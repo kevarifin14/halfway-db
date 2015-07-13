@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index] do
         resources :friendships, only: [:index, :create]
         resources :groups, only: [:index, :create]
+        resources :events, only: [:index, :create]
       end
     end
   end

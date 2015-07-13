@@ -10,7 +10,6 @@ module V1
       @group = Group.create(group_params)
       @group.users << user
       @group.users << group_members
-      puts @group.users
       render json: @group
     end
 
