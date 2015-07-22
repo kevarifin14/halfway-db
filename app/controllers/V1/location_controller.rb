@@ -7,12 +7,6 @@ module V1
       render json: @location
     end
 
-    def update
-      @location = Location.find(params.require(:id))
-      @location.update(location_params)
-      render json: @location
-    end
-
     private
 
     def user

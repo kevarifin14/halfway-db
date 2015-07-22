@@ -48,36 +48,4 @@ RSpec.describe V1::LocationController do
       expect(body).to include('user_id' => user.id)
     end
   end
-
-  describe 'PUT #update' do
-    let(:updated_location) { Location.find(location) }
-    let!(:location) { user.create_location(location_params) }
-    let(:new_latitude) { 15 }
-    let(:updated_attributes) { location_params.merge(latitude: new_latitude) }
-
-    it_behaves_like 'a successful action'
-
-    def put_update
-      put :update, id: location, location: updated_attributes
-    end
-
-    it 'does not create a new location' do
-      expect{ put_update }.not_to change(Location, :count)
-    end
-
-    it 'updates the location attributes' do
-      put_update
-      expect(updated_location.latitude).to eq(new_latitude)
-    end
-
-    it 'renders json of the created location' do
-      put_update
-      body = JSON.parse(response.body)
-
-      expect(body).to include('latitude' => new_latitude)
-      expect(body).to include('longitude' => longitude)
-      expect(body).to include('user_id' => user.id)
-    end
-
-  end
 end
