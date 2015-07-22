@@ -3,44 +3,27 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
+# Rails for API only applications
 gem 'rails-api'
-
-gem 'spring', :group => :development
-
-
+# postgresql database for Active Record
 gem 'pg'
-
 gem 'devise'
-
+# ActiveModel::Serializer implementation and Rails hooks
 gem 'active_model_serializers'
 
 group :development do
   gem 'annotate'
   gem 'rubocop'
+  gem 'spring'
 end
 
 group :development, :test do
+  # Stops execution and gets a debugger console
   gem 'byebug'
   gem 'rspec-rails'
   gem 'rspec-core'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
+  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
 end
-
-
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano', :group => :development
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
