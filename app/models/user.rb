@@ -2,7 +2,6 @@ require 'devise'
 require 'devise/orm/active_record'
 require_relative 'membership'
 require_relative 'event'
-require_relative 'location'
 
 # Basic user class that holds user information
 class User < ActiveRecord::Base
@@ -23,8 +22,6 @@ class User < ActiveRecord::Base
 
   has_many :invitations
   has_many :events, through: :invitations
-
-  has_one :location
 
   private
 

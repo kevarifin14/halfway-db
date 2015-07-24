@@ -12,6 +12,8 @@ gem 'devise'
 gem 'active_model_serializers'
 # a set of strategies for cleaning your database in Ruby
 gem 'database_cleaner'
+# Defines a MethodObject class
+gem 'method_man'
 
 
 group :development do

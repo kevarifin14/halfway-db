@@ -2,6 +2,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'active_record'
 require 'shoulda/matchers'
 require 'factory_girl'
+require 'byebug'
 require './spec/support/database_cleaner'
 
 ActiveRecord::Migration.maintain_test_schema!

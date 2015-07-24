@@ -8,7 +8,6 @@ RSpec.describe User do
     it { is_expected.to have_many(:invitations) }
     it { is_expected.to have_many(:groups).through(:memberships) }
     it { is_expected.to have_many(:events).through(:invitations) }
-    it { is_expected.to have_one(:location) }
   end
 
   describe 'columns' do
@@ -19,6 +18,9 @@ RSpec.describe User do
           null: false,
         )
     end
+
+    it { is_expected.to have_db_column(:latitude).of_type(:decimal) }
+    it { is_expected.to have_db_column(:longitude).of_type(:decimal) }
 
     it do
       is_expected.to have_db_column(:username).of_type(:string)
