@@ -1,4 +1,5 @@
-require 'rails_helper'
+require 'active_record_helper'
+require './app/models/membership'
 
 RSpec.describe Membership do
   describe 'associations' do

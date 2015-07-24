@@ -1,3 +1,10 @@
+require 'devise'
+require 'devise/orm/active_record'
+require_relative 'membership'
+require_relative 'event'
+require_relative 'location'
+
+# Basic user class that holds user information
 class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :validatable
 
@@ -22,7 +29,7 @@ class User < ActiveRecord::Base
   private
 
   def update_access_token!
-    self.access_token = "#{self.id}:#{Devise.friendly_token}"
+    self.access_token = "#{id}:#{Devise.friendly_token}"
     save
   end
 end

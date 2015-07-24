@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe V1::EventsController do
   let(:user) { create(User) }
-  let(:event) { create(Event, description: description, date: date ) }
+  let(:event) { create(Event, description: description, date: date) }
   let(:invited_user) { create(User) }
   let(:another_invited_user) { create(User) }
   let(:description) { 'event' }
@@ -31,16 +31,16 @@ RSpec.describe V1::EventsController do
   describe 'POST #create' do
     def post_create
       post :create,
-      user_id: user,
-      date: date,
-      description: description,
-      users: [invited_user, another_invited_user]
+           user_id: user,
+           date: date,
+           description: description,
+           users: [invited_user, another_invited_user]
     end
 
     it_behaves_like 'a successful action'
 
     it 'creates an event' do
-      expect{ post_create }.to change(Event, :count).by(1)
+      expect { post_create }.to change(Event, :count).by(1)
     end
 
     it 'adds the user to the event' do

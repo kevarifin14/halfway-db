@@ -22,7 +22,7 @@ RSpec.describe V1::FriendshipsController do
   end
 
   describe 'POST #create' do
-    before { post :create, user_id: user, friend_id: friend}
+    before { post :create, user_id: user, friend_id: friend }
 
     it 'creates a friendship between the two users' do
       expect(user.friends).to include(friend)

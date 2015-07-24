@@ -1,4 +1,5 @@
-require 'rails_helper'
+require 'active_record_helper'
+require './app/models/location'
 
 RSpec.describe Location do
   describe 'associations' do

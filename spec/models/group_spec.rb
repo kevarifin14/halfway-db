@@ -1,4 +1,5 @@
-require 'rails_helper'
+require 'active_record_helper'
+require './app/models/group'
 
 RSpec.describe Group do
   describe 'columns' do

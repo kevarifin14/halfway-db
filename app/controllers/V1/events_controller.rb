@@ -1,4 +1,5 @@
 module V1
+  # CRUD for events
   class EventsController < ApplicationController
     skip_before_action :authenticate_user_from_token!
 
@@ -30,6 +31,5 @@ module V1
       end
       event_invitees
     end
-
   end
 end

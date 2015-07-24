@@ -1,4 +1,5 @@
-require 'rails_helper'
+require 'active_record_helper'
+require './app/models/invitation'
 
 RSpec.describe Invitation do
   describe 'associations' do
@@ -7,6 +8,5 @@ RSpec.describe Invitation do
 
     it { is_expected.to belong_to(:event) }
     it { is_expected.to have_db_index(:event_id) }
-
   end
 end

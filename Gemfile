@@ -10,6 +10,9 @@ gem 'pg'
 gem 'devise'
 # ActiveModel::Serializer implementation and Rails hooks
 gem 'active_model_serializers'
+# a set of strategies for cleaning your database in Ruby
+gem 'database_cleaner'
+
 
 group :development do
   gem 'annotate'

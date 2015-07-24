@@ -9,11 +9,9 @@ RSpec.describe V1::LocationController do
   let(:latitude) { 20.123 }
   let(:longitude) { -14.123 }
 
-
   shared_examples 'a successful action' do
     specify {  expect(response).to be_successful }
   end
-
 
   describe 'POST #create' do
     let(:created_location) { Location.last }
@@ -25,7 +23,7 @@ RSpec.describe V1::LocationController do
     end
 
     it 'creates a new location' do
-      expect{ post_create }.to change(Location, :count).by(1)
+      expect { post_create }.to change(Location, :count).by(1)
     end
 
     it 'creates a new location assigned to specified user' do

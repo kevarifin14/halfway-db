@@ -1,3 +1,6 @@
+require 'rails-api'
+
+# Standard controller base class
 class ApplicationController < ActionController::API
   include AbstractController::Translation
 
@@ -5,9 +8,6 @@ class ApplicationController < ActionController::API
 
   respond_to :json
 
-  ##
-  # User Authentication
-  # Authenticates the user with OAuth2 Resource Owner Password Credentials Grant
   def authenticate_user_from_token!
     auth_token = request.headers['Authorization']
 
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
 
   private
 
-  def authenticate_with_auth_token auth_token
+  def authenticate_with_auth_token(auth_token)
     unless auth_token.include?(':')
       authentication_error
       return
@@ -30,18 +30,13 @@ class ApplicationController < ActionController::API
     user = User.where(id: user_id).first
 
     if user && Devise.secure_compare(user.access_token, auth_token)
-      # User can access
       sign_in user, store: false
     else
       authentication_error
     end
   end
 
-  ##
-  # Authentication Failure
-  # Renders a 401 error
   def authentication_error
-    # User's token is either invalid or not in the right format
-    render json: {error: t('unauthorized')}, status: 401  # Authentication timeout
+    render json: { error: t('unauthorized') }, status: 401
   end
 end

@@ -1,7 +1,7 @@
-require 'rails_helper'
+require 'active_record_helper'
+require './app/models/event'
 
 RSpec.describe Event do
-
   describe 'default_scope' do
     let!(:third) { create(described_class, date: '2015-03-01') }
     let!(:first) { create(described_class, date: '2015-05-01') }
@@ -20,5 +20,5 @@ RSpec.describe Event do
   describe 'associations' do
     it { is_expected.to have_many(:invitations) }
     it { is_expected.to have_many(:users).through(:invitations) }
-   end
+  end
 end

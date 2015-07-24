@@ -11,7 +11,6 @@ RSpec.describe V1::GroupsController do
     specify {  expect(response).to be_successful }
   end
 
-
   describe 'GET #index' do
     before do
       group.users.append(user)
@@ -28,15 +27,15 @@ RSpec.describe V1::GroupsController do
   describe 'POST #create' do
     def post_create
       post :create,
-      user_id: user,
-      name: 'group',
-      users:[group_member, another_group_member]
+           user_id: user,
+           name: 'group',
+           users: [group_member, another_group_member]
     end
 
     it_behaves_like 'a successful action'
 
     it 'creates a new group' do
-      expect{ post_create }.to change(Group, :count).by(1)
+      expect { post_create }.to change(Group, :count).by(1)
     end
 
     it 'has the user in the group' do
@@ -56,6 +55,5 @@ RSpec.describe V1::GroupsController do
 
       expect(body).to include('name' => name)
     end
-
   end
 end

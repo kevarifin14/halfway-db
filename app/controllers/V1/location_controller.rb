@@ -1,4 +1,5 @@
 module V1
+  # CRUD for location
   class LocationController < ApplicationController
     skip_before_action :authenticate_user_from_token!
 

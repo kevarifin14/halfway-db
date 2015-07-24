@@ -1,4 +1,5 @@
 module V1
+  # CRUD for groups
   class GroupsController < ApplicationController
     skip_before_action :authenticate_user_from_token!
 

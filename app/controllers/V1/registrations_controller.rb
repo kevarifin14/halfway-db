@@ -1,6 +1,7 @@
-require "./app/serializers/V1/sessions_serializer"
+require './app/serializers/V1/sessions_serializer'
 
 module V1
+  # CRUD for registration
   class RegistrationsController < ApplicationController
     skip_before_action :authenticate_user_from_token!
 
