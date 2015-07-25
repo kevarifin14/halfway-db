@@ -23,6 +23,12 @@ class User < ActiveRecord::Base
   has_many :invitations
   has_many :events, through: :invitations
 
+  scope(:accepted_event_invitation, lambda do |event|
+    event.invitations.where(rsvp: true).map do |invitation|
+      invitation.user
+    end
+  end)
+
   private
 
   def update_access_token!

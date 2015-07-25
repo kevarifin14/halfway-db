@@ -15,6 +15,8 @@ RSpec.describe Event do
   describe 'columns' do
     it { is_expected.to have_db_column(:description).with_options(null: false) }
     it { is_expected.to have_db_column(:date).with_options(null: false) }
+    it { is_expected.to have_db_column(:latitude) }
+    it { is_expected.to have_db_column(:longitude) }
   end
 
   describe 'associations' do

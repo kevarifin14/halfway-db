@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         resources :friendships, only: [:index, :create]
         resources :groups, only: [:index, :create]
         resources :events, only: [:index, :create]
+          resources :invitations, only: [:update]
       end
     end
   end

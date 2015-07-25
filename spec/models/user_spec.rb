@@ -31,6 +31,37 @@ RSpec.describe User do
     end
   end
 
+  describe 'scopes' do
+    describe 'accepted_event_invitation' do
+      let(:invited_and_attending_user) { create(User) }
+      let(:invited_but_not_attending_user) { create(User) }
+      let(:uninvited_user) { create(User) }
+
+      let!(:event) do
+        create(
+          Event,
+          users: [
+            invited_and_attending_user,
+            invited_but_not_attending_user,
+          ]
+        )
+      end
+
+      before do
+        Invitation.find_by(
+          event: event,
+          user: invited_and_attending_user
+        ).update(rsvp: true)
+      end
+
+      it 'returns users that have accepted the event invitation' do
+        byebug
+        expect(described_class.accepted_event_invitation(event))
+          .to match_array([invited_and_attending_user])
+      end
+    end
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_presence_of(:username) }
