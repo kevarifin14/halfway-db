@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
       resource :login, only: [:create], controller: :sessions
       resource :signup, only: [:create], controller: :registrations
-      resources :users, only: [:index] do
+      resources :users, only: [:index, :update] do
         resources :friendships, only: [:index, :create]
         resources :groups, only: [:index, :create]
         resources :events, only: [:index, :create]
