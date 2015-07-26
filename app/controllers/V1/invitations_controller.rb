@@ -9,7 +9,6 @@ module V1
       @invitation = Invitation.find(params.require(:id))
       @invitation.update(invitation_params)
       update_halfway_location
-      render json: @invitation
     end
 
     private
