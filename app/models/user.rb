@@ -24,9 +24,7 @@ class User < ActiveRecord::Base
   has_many :events, through: :invitations
 
   scope(:accepted_event_invitation, lambda do |event|
-    event.invitations.where(rsvp: true).map do |invitation|
-      invitation.user
-    end
+    event.invitations.where(rsvp: true).map(&:user)
   end)
 
   private

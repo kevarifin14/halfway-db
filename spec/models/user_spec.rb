@@ -43,19 +43,18 @@ RSpec.describe User do
           users: [
             invited_and_attending_user,
             invited_but_not_attending_user,
-          ]
+          ],
         )
       end
 
       before do
         Invitation.find_by(
           event: event,
-          user: invited_and_attending_user
+          user: invited_and_attending_user,
         ).update(rsvp: true)
       end
 
       it 'returns users that have accepted the event invitation' do
-        byebug
         expect(described_class.accepted_event_invitation(event))
           .to match_array([invited_and_attending_user])
       end

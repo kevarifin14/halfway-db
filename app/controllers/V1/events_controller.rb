@@ -1,3 +1,5 @@
+require './lib/halfway_calculator'
+
 module V1
   # CRUD for events
   class EventsController < ApplicationController
@@ -10,6 +12,7 @@ module V1
     def create
       @event = Event.create(event_params)
       @event.users << user
+      @event.update(HalfwayCalculator.call(event: @event))
       Invitation.find_by(user: user, event: @event).update(rsvp: true)
       @event.users << event_invitees
       render json: @event

@@ -49,6 +49,12 @@ RSpec.describe V1::EventsController do
       expect(Invitation.find_by(user: user, event: Event.last).rsvp).to eq(true)
     end
 
+    it 'sets the location as the midpoint of all users that have rsvped' do
+      post_create
+      expect(Event.last.latitude).to eq(user.latitude)
+      expect(Event.last.longitude).to eq(user.longitude)
+    end
+
     it 'includes the specified users invited to event' do
       post_create
       expect(Event.last.users)
