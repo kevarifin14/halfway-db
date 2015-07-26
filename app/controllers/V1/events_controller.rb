@@ -10,6 +10,7 @@ module V1
     def create
       @event = Event.create(event_params)
       @event.users << user
+      Invitation.find_by(user: user, event: @event).update(rsvp: true)
       @event.users << event_invitees
       render json: @event
     end

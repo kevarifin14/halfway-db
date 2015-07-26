@@ -43,9 +43,10 @@ RSpec.describe V1::EventsController do
       expect { post_create }.to change(Event, :count).by(1)
     end
 
-    it 'adds the user to the event' do
+    it 'adds the user to the event and sets their rsvp as true' do
       post_create
       expect(Event.last.users).to include(user)
+      expect(Invitation.find_by(user: user, event: Event.last).rsvp).to eq(true)
     end
 
     it 'includes the specified users invited to event' do
