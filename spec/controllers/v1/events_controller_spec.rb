@@ -9,7 +9,7 @@ RSpec.describe V1::EventsController do
   let(:date) { '2015-06-06'.to_date }
 
   shared_examples 'a successful action' do
-    specify {  expect(response).to be_successful }
+    specify { expect(response).to be_successful }
   end
 
   describe 'GET #index' do
