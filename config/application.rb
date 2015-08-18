@@ -1,6 +1,5 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
 require 'rails'
 require "active_model/railtie"
 require "active_job/railtie"
@@ -11,7 +10,7 @@ require "action_view/railtie"
 
 # Do NOT uncomment this line. Here's why.
 # http://myronmars.to/n/dev-blog/2012/12/5-reasons-to-avoid-bundler-require
-# Bundler.require(*Rails.groups)
+Bundler.require(*Rails.groups)
 
 module HalfwayDb
   class Application < Rails::Application
