@@ -1,5 +1,3 @@
-require 'active_model_serializers'
-
 module V1
   # Serializes a session for security
   class SessionsSerializer < ActiveModel::Serializer
