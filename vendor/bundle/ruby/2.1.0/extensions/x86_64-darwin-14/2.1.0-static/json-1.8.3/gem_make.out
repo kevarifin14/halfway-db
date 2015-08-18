@@ -1,0 +1,10 @@
+/Users/Mitas/.rbenv/versions/2.1.0/bin/ruby -r ./siteconf20150810-91526-1iqh9ww.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+make "DESTDIR=" install
+installing default libraries
