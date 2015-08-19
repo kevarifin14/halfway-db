@@ -19,6 +19,6 @@ unless defined?(Rails)
 end
 
 RSpec.configure do |config|
-  FactoryGirl.find_definitions
+  # FactoryGirl.find_definitions
   config.include(FactoryGirl::Syntax::Methods)
 end

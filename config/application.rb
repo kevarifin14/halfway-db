@@ -10,6 +10,8 @@ require "action_view/railtie"
 
 # Do NOT uncomment this line. Here's why.
 # http://myronmars.to/n/dev-blog/2012/12/5-reasons-to-avoid-bundler-require
+# but for now we need it??
+# uninitialized constant ActiveModel::Serializer (NameError) getting this error on heroku
 Bundler.require(*Rails.groups)
 
 module HalfwayDb
