@@ -69,4 +69,16 @@ RSpec.describe V1::EventsController do
       expect(body).to include('date' => date.to_s)
     end
   end
+
+  describe 'DELETE #destroy' do
+    def delete_destroy
+      delete :destroy, id: event
+    end
+
+    let!(:event) { create(Event) }
+
+    it 'destroys the event' do
+      expect { delete_destroy }.to change(Event, :count).by(-1)
+    end
+  end
 end

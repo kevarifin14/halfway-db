@@ -18,7 +18,17 @@ module V1
       render json: @event
     end
 
+    def destroy
+      @event = event
+      @event.delete
+      render json: @event
+    end
+
     private
+
+    def event
+      Event.find(params.require(:id))
+    end
 
     def user
       User.find(params.require(:user_id))

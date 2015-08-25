@@ -13,5 +13,10 @@ RSpec.describe V1::EventsController do
       expect(post: '/v1/users/1/events')
         .to route_to('v1/events#create', user_id: '1', format: :json)
     end
+
+    it 'routes to #destroy' do
+      expect(delete: 'v1/events/1')
+        .to route_to('v1/events#destroy', id: '1', format: :json)
+    end
   end
 end
