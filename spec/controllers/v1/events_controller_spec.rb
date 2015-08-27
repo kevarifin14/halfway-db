@@ -6,7 +6,7 @@ RSpec.describe V1::EventsController do
   let(:invited_user) { create(User) }
   let(:another_invited_user) { create(User) }
   let(:description) { 'event' }
-  let(:date) { '2015-06-06'.to_date }
+  let(:date) { '2015-06-06'.to_datetime }
 
   shared_examples 'a successful action' do
     specify { expect(response).to be_successful }
@@ -24,7 +24,6 @@ RSpec.describe V1::EventsController do
       body = JSON.parse(response.body)
 
       expect(body[0]).to include('description' => description)
-      expect(body[0]).to include('date' => date.to_s)
     end
   end
 
@@ -66,7 +65,6 @@ RSpec.describe V1::EventsController do
       body = JSON.parse(response.body)
 
       expect(body).to include('description' => description)
-      expect(body).to include('date' => date.to_s)
     end
   end
 

@@ -1,5 +1,4 @@
-require 'active_record_helper'
-require './app/models/event'
+require 'rails_helper'
 
 RSpec.describe Event do
   describe 'default_scope' do
@@ -13,10 +12,16 @@ RSpec.describe Event do
   end
 
   describe 'columns' do
-    it { is_expected.to have_db_column(:description).with_options(null: false) }
-    it { is_expected.to have_db_column(:date).with_options(null: false) }
-    it { is_expected.to have_db_column(:latitude) }
-    it { is_expected.to have_db_column(:longitude) }
+    it do
+      is_expected.to have_db_column(:description).of_type(:string)
+        .with_options(null: false)
+    end
+    it do
+      is_expected.to have_db_column(:date).of_type(:datetime)
+        .with_options(null: false)
+    end
+    it { is_expected.to have_db_column(:latitude).of_type(:decimal) }
+    it { is_expected.to have_db_column(:longitude).of_type(:decimal) }
   end
 
   describe 'associations' do

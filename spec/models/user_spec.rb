@@ -1,5 +1,4 @@
-require 'active_record_helper'
-require './app/models/user'
+require 'rails_helper'
 
 RSpec.describe User do
   describe 'associations' do

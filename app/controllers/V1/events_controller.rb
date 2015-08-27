@@ -12,8 +12,8 @@ module V1
     def create
       @event = Event.create(event_params)
       @event.users << user
-      @event.update(HalfwayCalculator.call(event: @event))
       Invitation.find_by(user: user, event: @event).update(rsvp: true)
+      @event.update(HalfwayCalculator.call(event: @event))
       @event.users << event_invitees
       render json: @event
     end
