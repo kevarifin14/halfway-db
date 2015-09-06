@@ -12,7 +12,7 @@ module V1
     def create
       @event = Event.create(event_params)
       @event.users << user
-      Invitation.find_by(user: user, event: @event).update(rsvp: true)
+      rsvp_user
       @event.update(HalfwayCalculator.call(event: @event))
       @event.users << event_invitees
       render json: @event
@@ -26,6 +26,14 @@ module V1
 
     private
 
+    def rsvp_user
+      Invitation.find_by(user: user, event: @event).update(rsvp: true)
+    end
+
+    def event_params
+      params.permit(:date, :description)
+    end
+
     def event
       Event.find(params.require(:id))
     end
@@ -34,16 +42,11 @@ module V1
       User.find(params.require(:user_id))
     end
 
-    def event_params
-      params.permit(:date, :description)
-    end
-
     def event_invitees
-      event_invitees = []
-      params.fetch(:users).each do |user|
-        event_invitees.append(User.find(user))
+      invitees = []
+      params.fetch(:users).map do |user|
+        invitees.append(User.find(user))
       end
-      event_invitees
     end
   end
 end

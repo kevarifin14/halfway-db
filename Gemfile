@@ -15,6 +15,8 @@ gem 'active_model_serializers'
 gem 'database_cleaner'
 # Defines a MethodObject class
 gem 'method_man'
+# For yelp api
+gem 'yelp'
 
 
 group :development do
