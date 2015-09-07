@@ -1,4 +1,4 @@
-require './lib/halfway_calculator'
+require './lib/halfway_location_retriever'
 
 module V1
   # CRUD for events
@@ -13,8 +13,12 @@ module V1
       @event = Event.create(event_params)
       @event.users << user
       rsvp_user
-      @event.update(HalfwayCalculator.call(event: @event))
       @event.users << event_invitees
+      @event.update(HalfwayLocationRetriever
+        .call(
+          event: @event,
+          search_param: search_param,
+        ))
       render json: @event
     end
 
@@ -31,7 +35,11 @@ module V1
     end
 
     def event_params
-      params.permit(:date, :description)
+      params.permit(:date, :description, :search_param)
+    end
+
+    def search_param
+      params.require(:search_param)
     end
 
     def event

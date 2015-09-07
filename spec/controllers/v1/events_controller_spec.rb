@@ -7,6 +7,18 @@ RSpec.describe V1::EventsController do
   let(:another_invited_user) { create(User) }
   let(:description) { 'event' }
   let(:date) { '2015-06-06'.to_datetime }
+  let(:search_param) { 'restaurant' }
+
+  let(:meeting_point_data) do
+    { meeting_point: meeting_point, address: address }
+  end
+  let(:address) { '1234 Telegraph Ave.' }
+  let(:meeting_point) { 'Katsumi' }
+
+  before do
+    allow(HalfwayLocationRetriever).to receive(:call)
+      .and_return(meeting_point_data)
+  end
 
   shared_examples 'a successful action' do
     specify { expect(response).to be_successful }
@@ -32,6 +44,7 @@ RSpec.describe V1::EventsController do
            user_id: user,
            date: date,
            description: description,
+           search_param: search_param,
            users: [invited_user, another_invited_user]
     end
 
@@ -47,10 +60,10 @@ RSpec.describe V1::EventsController do
       expect(Invitation.find_by(user: user, event: Event.last).rsvp).to eq(true)
     end
 
-    it 'sets the location as the midpoint of all users that have rsvped' do
+    it 'updates location data based on all users that have rsvped' do
       post_create
-      expect(Event.last.latitude).to eq(user.latitude)
-      expect(Event.last.longitude).to eq(user.longitude)
+      expect(Event.last.address).to eq(address)
+      expect(Event.last.meeting_point).to eq(meeting_point)
     end
 
     it 'includes the specified users invited to event' do

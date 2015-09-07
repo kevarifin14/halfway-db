@@ -5,8 +5,6 @@ require 'factory_girl'
 require 'byebug'
 require './spec/support/database_cleaner'
 
-ActiveRecord::Migration.maintain_test_schema!
-
 unless defined?(Rails)
   database_yml = File.read('config/database.yml')
   database_yml_erb_parsed = ERB.new(database_yml).result
@@ -17,6 +15,8 @@ unless defined?(Rails)
     ActiveRecord::Base.maintain_test_schema = true
   end
 end
+
+ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   # FactoryGirl.find_definitions

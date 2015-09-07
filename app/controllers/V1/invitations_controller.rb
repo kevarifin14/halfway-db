@@ -1,4 +1,4 @@
-require './lib/halfway_calculator'
+require './lib/halfway_location_retriever'
 
 module V1
   # CRUD for invitations
@@ -18,7 +18,12 @@ module V1
     end
 
     def update_halfway_location
-      event.update(HalfwayCalculator.call(event: event))
+      event.update(
+        HalfwayLocationRetriever.call(
+          event: event,
+          search_param: event.search_param,
+        ),
+      )
     end
 
     def event

@@ -10,6 +10,17 @@ RSpec.describe V1::InvitationsController do
   end
   let(:invitation_params) { attributes_for(Invitation).merge(rsvp: true) }
 
+  let(:meeting_point_data) do
+    { meeting_point: meeting_point, address: address }
+  end
+  let(:address) { '1234 Telegraph Ave.' }
+  let(:meeting_point) { 'Katsumi' }
+
+  before do
+    allow(HalfwayLocationRetriever).to receive(:call)
+      .and_return(meeting_point_data)
+  end
+
   describe 'PUT #update' do
     def put_update
       put :update, id: user_invitation, invitation: invitation_params
@@ -28,8 +39,8 @@ RSpec.describe V1::InvitationsController do
     it 'updates the event meeting location based on the new user location' do
       put_update
       event.reload
-      expect(event.latitude).to eq(15.0)
-      expect(event.longitude).to eq(15.0)
+      expect(event.meeting_point).to eq(meeting_point)
+      expect(event.address).to eq(address)
     end
   end
 end

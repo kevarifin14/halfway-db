@@ -1,6 +1,5 @@
-require 'active_record_helper'
+require 'rails_helper'
 require 'halfway_calculator'
-require './app/models/event'
 
 RSpec.describe HalfwayCalculator do
   let(:event) { create(Event, event_params) }

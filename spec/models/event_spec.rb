@@ -20,8 +20,12 @@ RSpec.describe Event do
       is_expected.to have_db_column(:date).of_type(:datetime)
         .with_options(null: false)
     end
-    it { is_expected.to have_db_column(:latitude).of_type(:decimal) }
-    it { is_expected.to have_db_column(:longitude).of_type(:decimal) }
+    it { is_expected.to have_db_column(:meeting_point).of_type(:string) }
+    it { is_expected.to have_db_column(:address).of_type(:string) }
+    it do
+      is_expected.to have_db_column(:search_param).of_type(:string)
+        .with_options(null: false)
+    end
   end
 
   describe 'associations' do
