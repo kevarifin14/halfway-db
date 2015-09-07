@@ -18,8 +18,14 @@ RSpec.describe User do
         )
     end
 
-    it { is_expected.to have_db_column(:latitude).of_type(:decimal) }
-    it { is_expected.to have_db_column(:longitude).of_type(:decimal) }
+    it do
+      is_expected.to have_db_column(:latitude).of_type(:decimal)
+        .with_options(null: false)
+    end
+    it do
+      is_expected.to have_db_column(:longitude).of_type(:decimal)
+        .with_options(null: false)
+    end
 
     it do
       is_expected.to have_db_column(:username).of_type(:string)

@@ -7,7 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 def create_user!(user_attributes)
   User.create!(
-    user_attributes.merge(password: 'Password1'),
+    user_attributes.merge(
+      password: 'password',
+      latitude: 0,
+      longitude: 0,
+    ),
   )
 end
 
