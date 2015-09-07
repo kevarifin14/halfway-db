@@ -9,7 +9,6 @@ module V1
 
     def create
       user.friends.append(friend)
-      friend.friends.append(user)
       render json: user.friends
     end
 

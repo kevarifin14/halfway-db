@@ -26,7 +26,7 @@ RSpec.describe V1::FriendshipsController do
 
     it 'creates a friendship between the two users' do
       expect(user.friends).to include(friend)
-      expect(friend.friends).to include(user)
+      expect(friend.friends).not_to include(user)
     end
   end
 end
