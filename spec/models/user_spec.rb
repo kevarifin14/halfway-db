@@ -64,6 +64,28 @@ RSpec.describe User do
           .to match_array([invited_and_attending_user])
       end
     end
+
+    describe 'reciprocated_friends' do
+      let(:user_1) { create(User) }
+      let(:user_2) { create(User) }
+      let(:user_3) { create(User) }
+
+      before do
+        add_friend(user_3, user_2)
+        add_friend(user_2, user_1)
+        add_friend(user_1, user_2)
+        add_friend(user_1, user_3)
+      end
+
+      def add_friend(user, friend)
+        user.friends.append(friend)
+      end
+
+      it 'returns only users that have reciprocated friending' do
+        expect(described_class.reciprocated_friends(user_1))
+          .to eq([user_2])
+      end
+    end
   end
 
   describe 'validations' do

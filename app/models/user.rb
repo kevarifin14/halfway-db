@@ -27,6 +27,12 @@ class User < ActiveRecord::Base
     event.invitations.where(rsvp: true).map(&:user)
   end)
 
+  scope(:reciprocated_friends, lambda do |user|
+    find_by(username: user.username).friends.select do |friend|
+      friend.friends.exists?(user.id)
+    end
+  end)
+
   private
 
   def update_access_token!

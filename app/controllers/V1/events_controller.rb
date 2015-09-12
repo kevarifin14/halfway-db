@@ -14,11 +14,12 @@ module V1
       @event.users << user
       rsvp_user
       @event.users << event_invitees
-      @event.update(HalfwayLocationRetriever
-        .call(
+      @event.update(
+        HalfwayLocationRetriever.call(
           event: @event,
           search_param: search_param,
-        ))
+        ),
+      )
       render json: @event
     end
 
