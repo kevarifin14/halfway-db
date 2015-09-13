@@ -18,6 +18,8 @@ module V1
         username: params.fetch(:username),
         password: params.fetch(:password),
         password_confirmation: params.fetch(:password_confirmation),
+        latitude: params.fetch(:latitude),
+        longitude: params.fetch(:longitude),
       }
     end
   end
