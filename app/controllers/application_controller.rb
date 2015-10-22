@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
   respond_to :json
 
   def authenticate_user_from_token!
-    auth_token = request.headers['Authorization']
+    auth_token = request.headers.fetch('Authorization')
 
     if auth_token
       authenticate_with_auth_token auth_token

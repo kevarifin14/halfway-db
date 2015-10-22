@@ -4,6 +4,10 @@ RSpec.describe V1::FriendshipsController do
   let(:user) { create(User) }
   let(:friend) { create(User) }
 
+  before do
+    request.env['HTTP_AUTHORIZATION'] = user.access_token
+  end
+
   describe 'GET #index' do
     before do
       user.friends.append(friend)

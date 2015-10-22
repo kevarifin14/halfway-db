@@ -16,6 +16,7 @@ RSpec.describe V1::EventsController do
   let(:meeting_point) { 'Katsumi' }
 
   before do
+    request.env['HTTP_AUTHORIZATION'] = user.access_token
     allow(HalfwayLocationRetriever).to receive(:call)
       .and_return(meeting_point_data)
   end
@@ -27,7 +28,8 @@ RSpec.describe V1::EventsController do
   describe 'GET #index' do
     before do
       event.users.append(user)
-      get :index, user_id: user
+      get :index,
+          user_id: user
     end
 
     it_behaves_like 'a successful action'

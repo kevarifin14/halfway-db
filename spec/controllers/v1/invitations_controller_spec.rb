@@ -17,6 +17,8 @@ RSpec.describe V1::InvitationsController do
   let(:meeting_point) { 'Katsumi' }
 
   before do
+    request.env['HTTP_AUTHORIZATION'] = user.access_token
+
     allow(HalfwayLocationRetriever).to receive(:call)
       .and_return(meeting_point_data)
   end

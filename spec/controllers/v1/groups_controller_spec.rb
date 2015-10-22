@@ -7,6 +7,10 @@ RSpec.describe V1::GroupsController do
   let(:group_member) { create(User) }
   let(:another_group_member) { create(User) }
 
+  before do
+    request.env['HTTP_AUTHORIZATION'] = user.access_token
+  end
+
   shared_examples 'a successful action' do
     specify {  expect(response).to be_successful }
   end

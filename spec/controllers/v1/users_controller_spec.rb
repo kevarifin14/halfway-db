@@ -5,6 +5,10 @@ RSpec.describe V1::UsersController do
   let!(:first_user) { create(User) }
   let!(:second_user) { create(User) }
 
+  before do
+    request.env['HTTP_AUTHORIZATION'] = user.access_token
+  end
+
   describe 'GET #index' do
     before { get :index }
 
