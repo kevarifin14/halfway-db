@@ -15,7 +15,7 @@ module V1
       @event.update(
         HalfwayLocationRetriever.call(
           event: @event,
-          search_param: search_param,
+          search_param: event_params.fetch(:search_param),
         ),
       )
       render json: @event
@@ -34,11 +34,7 @@ module V1
     end
 
     def event_params
-      params.permit(:date, :description, :search_param)
-    end
-
-    def search_param
-      params.require(:search_param)
+      params.require(:event).permit(:search_param, :date, :description)
     end
 
     def event
@@ -50,9 +46,8 @@ module V1
     end
 
     def event_invitees
-      invitees = []
       params.fetch(:users).map do |user|
-        invitees.append(User.find(user))
+        User.find(user)
       end
     end
   end

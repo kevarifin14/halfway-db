@@ -5,7 +5,7 @@ RSpec.describe V1::EventsController do
   let(:event) { create(Event, description: description, date: date) }
   let(:invited_user) { create(User) }
   let(:another_invited_user) { create(User) }
-  let(:description) { 'event' }
+  let(:description) { 'Event' }
   let(:date) { '2015-06-06'.to_datetime }
   let(:search_param) { 'restaurant' }
 
@@ -14,6 +14,8 @@ RSpec.describe V1::EventsController do
   end
   let(:address) { '1234 Telegraph Ave.' }
   let(:meeting_point) { 'Katsumi' }
+
+  let(:valid_event_attributes) { attributes_for(Event) }
 
   before do
     request.env['HTTP_AUTHORIZATION'] = user.access_token
@@ -44,9 +46,7 @@ RSpec.describe V1::EventsController do
     def post_create
       post :create,
            user_id: user,
-           date: date,
-           description: description,
-           search_param: search_param,
+           event: valid_event_attributes,
            users: [invited_user, another_invited_user]
     end
 
@@ -71,7 +71,7 @@ RSpec.describe V1::EventsController do
     it 'includes the specified users invited to event' do
       post_create
       expect(Event.last.users)
-        .to include(user, invited_user, another_invited_user)
+        .to match_array([user, invited_user, another_invited_user])
     end
 
     it 'renders json showing the event' do
