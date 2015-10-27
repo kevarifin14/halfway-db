@@ -40,5 +40,4 @@ module HalfwayDb
       end
     end
   end
-
 end

@@ -1,10 +1,11 @@
 require './lib/halfway_location_retriever'
+require 'action_pack'
 
 module V1
   # CRUD for events
   class EventsController < ApplicationController
     def index
-      render json: user.events
+      render json: user.events, content_type: 'application/json'
     end
 
     def create
