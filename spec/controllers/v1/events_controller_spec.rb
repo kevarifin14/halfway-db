@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe V1::EventsController do
   let(:user) { create(User) }
-  let(:event) { create(Event, description: description, date: date) }
+  let(:event1) { create(Event, description: description, date: date) }
+  let(:event2) { create(Event, description: description, date: date) }
   let(:invited_user) { create(User) }
   let(:another_invited_user) { create(User) }
   let(:description) { 'Event' }
@@ -29,7 +30,8 @@ RSpec.describe V1::EventsController do
 
   describe 'GET #index' do
     before do
-      event.users.append(user)
+      event1.users.append(user)
+      event2.users.append(user)
       get :index,
           user_id: user
     end
@@ -38,7 +40,26 @@ RSpec.describe V1::EventsController do
 
     it 'renders json showing the users events' do
       body = JSON.parse(response.body)
-      expect(body).to include('description' => description)
+      expect(body).to match_array(
+        'events' => [
+          {
+            'id' => event1.id,
+            'description' => 'Event',
+            'date' => '2015-06-06T00:00:00.000Z',
+            'meeting_point' => nil,
+            'address' => nil,
+            'search_param' => 'restaurant',
+          },
+          {
+            'id' => event2.id,
+            'description' => 'Event',
+            'date' => '2015-06-06T00:00:00.000Z',
+            'meeting_point' => nil,
+            'address' => nil,
+            'search_param' => 'restaurant',
+          },
+        ],
+      )
     end
   end
 
@@ -78,7 +99,7 @@ RSpec.describe V1::EventsController do
       post_create
       body = JSON.parse(response.body)
 
-      expect(body).to include('description' => description)
+      expect(body.fetch('event')).to include('description' => description)
     end
   end
 

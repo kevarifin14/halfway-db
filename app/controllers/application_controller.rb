@@ -3,7 +3,7 @@ require 'rails-api'
 # Standard controller base class
 class ApplicationController < ActionController::API
   include AbstractController::Translation
-
+  include ActionController::Serialization
   before_action :authenticate_user_from_token!
 
   respond_to :json

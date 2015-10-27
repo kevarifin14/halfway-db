@@ -6,7 +6,7 @@ module V1
   class EventsController < ApplicationController
     def index
       @events = user.events
-      render json: @events.first, serializer: V1::EventsSerializer
+      render json: @events, root: 'events'
     end
 
     def create
