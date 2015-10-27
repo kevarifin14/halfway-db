@@ -1,11 +1,12 @@
 require './lib/halfway_location_retriever'
-require 'action_pack'
+# require './app/serializers/V1/events_serializer'
 
 module V1
   # CRUD for events
   class EventsController < ApplicationController
     def index
-      render json: user.events, content_type: 'application/json'
+      @events = user.events
+      render json: @events.first, serializer: V1::EventsSerializer
     end
 
     def create

@@ -38,7 +38,7 @@ RSpec.describe V1::EventsController do
 
     it 'renders json showing the users events' do
       body = JSON.parse(response.body)
-      expect(body[0]).to include('description' => description)
+      expect(body).to include('description' => description)
     end
   end
 
