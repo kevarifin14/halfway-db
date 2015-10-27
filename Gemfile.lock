@@ -91,6 +91,7 @@ GEM
     pg (0.18.2)
     powerpack (0.1.1)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.3)
@@ -186,6 +187,7 @@ DEPENDENCIES
   factory_girl_rails
   method_man
   pg
+  rack-cors
   rails
   rails-api
   rspec-core
@@ -197,4 +199,4 @@ DEPENDENCIES
   yelp
 
 BUNDLED WITH
-   1.10.5
+   1.10.6

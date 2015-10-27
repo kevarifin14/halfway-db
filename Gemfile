@@ -17,6 +17,8 @@ gem 'database_cleaner'
 gem 'method_man'
 # For yelp api
 gem 'yelp'
+# Allow Ionic to make calls to API
+gem 'rack-cors'
 
 
 group :development do
