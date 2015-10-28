@@ -15,7 +15,6 @@ RSpec.describe V1::UsersController do
     specify { expect(response).to be_successful }
 
     it 'displays all users in a json hash' do
-      body = JSON.parse(response.body)
     end
   end
 
