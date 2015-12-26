@@ -3,27 +3,18 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 
 gem 'rails'
-
-# Rails for API only applications
-gem 'rails-api'
-# postgresql database for Active Record
-gem 'pg'
-gem 'devise'
-# ActiveModel::Serializer implementation and Rails hooks
-gem 'active_model_serializers'
-# a set of strategies for cleaning your database in Ruby
-gem 'database_cleaner'
-# Defines a MethodObject class
-gem 'method_man'
-# For yelp api
-gem 'yelp'
-# Allow Ionic to make calls to API
-gem 'rack-cors'
-
+gem 'rails-api' # Rails for API only applications
+gem 'pg' # postgresql database for Active Record
+gem 'devise' # user authentication services
+gem 'active_model_serializers' # ActiveModel::Serializer implementation
+gem 'database_cleaner' # strategies for cleaning your database in Ruby
+gem 'method_man' # Defines a MethodObject class
+gem 'yelp' # For yelp api
+gem 'rack-cors' # Allow Ionic to make calls to API
 
 group :development do
   gem 'annotate'
-  gem 'rubocop'
+  gem 'rubocop' # code syntax checker
   gem 'spring'
 end
 
