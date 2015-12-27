@@ -12,7 +12,7 @@ module V1
       return invalid_login_attempt unless @user
 
       if @user.valid_password?(params.fetch(:password))
-        sign_in :user, @user
+        sign_in(:user, @user)
         render json: @user, serializer: V1::SessionsSerializer, root: nil
       else
         invalid_login_attempt

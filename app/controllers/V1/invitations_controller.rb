@@ -20,7 +20,7 @@ module V1
         HalfwayLocationRetriever.call(
           event: event,
           search_param: event.search_param,
-        ),
+        )
       )
     end
 
