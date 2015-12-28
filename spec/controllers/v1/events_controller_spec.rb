@@ -63,6 +63,32 @@ RSpec.describe V1::EventsController do
     end
   end
 
+  describe 'GET #show' do
+    before do
+      get :show, id: event1
+    end
+
+    it_behaves_like 'a successful action'
+
+    it 'renders json of the requested event' do
+      expect(JSON.parse(response.body)).to match_array(
+        [
+          [
+            'event',
+            {
+              'id' => event1.id,
+              'date' => '2015-06-06T00:00:00.000Z',
+              'description' => 'Event',
+              'meeting_point' => nil,
+              'address' => nil,
+              'search_param' => 'restaurant',
+            },
+          ]
+        ]
+      )
+    end
+  end
+
   describe 'POST #create' do
     def post_create
       post :create,

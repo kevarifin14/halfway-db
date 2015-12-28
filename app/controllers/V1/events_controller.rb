@@ -9,6 +9,11 @@ module V1
       render json: @events, root: 'events'
     end
 
+    def show
+      @event = event
+      render json: event
+    end
+
     def create
       @event = Event.create(event_params)
       @event.users << user
