@@ -29,7 +29,9 @@ RSpec.describe V1::RegistrationsController do
         "{\"email\":\"#{user.email}\",\"token_type\":\"Bearer\","\
         "\"user_id\":#{user.id},"\
         "\"access_token\":\"#{user.access_token}\","\
-        "\"username\":\"#{user.username}\"}"
+        "\"username\":\"#{user.username}\","\
+        "\"longitude\":\"69.0\","\
+        "\"latitude\":\"54.0\"}"
       )
     end
   end

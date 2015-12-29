@@ -19,7 +19,9 @@ RSpec.describe V1::SessionsController do
     "{\"email\":\"#{user.email}\",\"token_type\":\"Bearer\","\
     "\"user_id\":#{user.id},"\
     "\"access_token\":\"#{user.access_token}\","\
-    "\"username\":\"#{user.username}\"}"
+    "\"username\":\"#{user.username}\","\
+    "\"longitude\":\"15.0\","\
+    "\"latitude\":\"15.0\"}"
   end
 
   describe 'POST #create' do
