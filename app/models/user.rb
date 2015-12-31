@@ -33,6 +33,13 @@ class User < ActiveRecord::Base
     end
   end)
 
+  scope(:friend_requests, lambda do |current_user|
+    all.select do |user|
+      !current_user.friends.include?(user) and
+        user.friends.include?(current_user)
+    end
+  end)
+
   private
 
   def update_access_token!

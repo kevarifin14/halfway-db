@@ -86,6 +86,27 @@ RSpec.describe User do
           .to eq([user_2])
       end
     end
+
+    describe 'friend_requests' do
+      let(:user_1) { create(User) }
+      let(:user_2) { create(User) }
+      let(:user_3) { create(User) }
+
+      before do
+        add_friend(user_3, user_1)
+        add_friend(user_2, user_1)
+        add_friend(user_1, user_2)
+      end
+
+      def add_friend(user, friend)
+        user.friends.append(friend)
+      end
+
+      it 'returns users with unaccepted friend requests' do
+        expect(described_class.friend_requests(user_1))
+          .to eq([user_3])
+      end
+    end
   end
 
   describe 'validations' do

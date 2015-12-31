@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resource :login, only: [:create], controller: :sessions
       resource :signup, only: [:create], controller: :registrations
       resources :users, only: [:index, :update] do
+        resources :friend_requests, only: [:index]
         resources :friendships, only: [:index, :create]
         resources :groups, only: [:index, :create]
         resources :events, only: [:index, :create, :destroy, :show]
