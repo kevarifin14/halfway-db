@@ -34,6 +34,11 @@ RSpec.describe User do
           null: false,
         )
     end
+
+    it { is_expected.to have_db_column(:avatar_file_name).of_type(:string) }
+    it { is_expected.to have_db_column(:avatar_content_type).of_type(:string) }
+    it { is_expected.to have_db_column(:avatar_file_size).of_type(:integer) }
+    it { is_expected.to have_db_column(:avatar_updated_at).of_type(:datetime) }
   end
 
   describe 'scopes' do

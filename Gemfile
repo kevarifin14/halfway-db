@@ -11,6 +11,7 @@ gem 'database_cleaner' # strategies for cleaning your database in Ruby
 gem 'method_man' # Defines a MethodObject class
 gem 'yelp' # For yelp api
 gem 'rack-cors' # Allow Ionic to make calls to API
+gem 'paperclip' # File attachment management for ActiveRecord
 
 group :development do
   gem 'annotate'

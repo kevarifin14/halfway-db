@@ -17,7 +17,7 @@ module V1
     private
 
     def user_params
-      params.require(:user).permit(:longitude, :latitude)
+      params.require(:user).permit(:longitude, :latitude, :avatar)
     end
   end
 end
