@@ -7,7 +7,8 @@ module V1
                :access_token,
                :username,
                :longitude,
-               :latitude
+               :latitude,
+               :avatar
 
     def user_id
       object.id

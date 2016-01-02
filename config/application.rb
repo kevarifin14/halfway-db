@@ -7,6 +7,7 @@ require 'active_record/railtie'
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_view/railtie'
+require 'sprockets/railtie'
 
 # Do NOT uncomment this line. Here's why.
 # http://myronmars.to/n/dev-blog/2012/12/5-reasons-to-avoid-bundler-require
