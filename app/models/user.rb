@@ -12,11 +12,14 @@ class User < ActiveRecord::Base
   has_attached_file :avatar,
                     styles: {
                       medium: '300x300>',
-                      thumb: '100x100>'
+                      thumb: '100x100>',
                     },
-                    default_url: '/images/:style/missing.png'
-
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+                    default_url: '/assets/images/unknown.png'
+  do_not_validate_attachment_file_type :avatar
+  # validates_attachment_content_type :avatar,
+  #                                   content_type: {
+  #                                     content_type: 'image/png',
+  #                                   }
 
   validates :username, presence: true
   validates :email, presence: true

@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'rack/test'
 
 RSpec.describe V1::UsersController do
   let!(:user) { create(User, latitude: 15, longitude: 12) }
@@ -52,6 +53,19 @@ RSpec.describe V1::UsersController do
       expect(body).to include('email' => user.email)
       expect(body).to include('latitude' => user.latitude.to_s)
       expect(body).to include('longitude' => user.longitude.to_s)
+    end
+
+    context 'updating avatars' do
+      let(:fixture_file_path) do
+        Rails.root.join('spec', 'fixtures', 'avatar.png')
+      end
+      let(:avatar_params) do
+        updated_params.merge(avatar: fixture_file_upload('avatar.png'))
+      end
+      it 'allows users to update their avatar' do
+        put :update, id: user, user: avatar_params
+        user.reload
+      end
     end
   end
 end

@@ -10,7 +10,8 @@ module V1
 
     def update
       @user = User.find(params.require(:id))
-      @user.update(user_params)
+      @user.update!(user_params)
+      @user.reload
       render json: @user
     end
 
