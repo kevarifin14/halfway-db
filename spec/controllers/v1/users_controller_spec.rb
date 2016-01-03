@@ -68,7 +68,6 @@ RSpec.describe V1::UsersController do
             user: updated_params,
             avatar: fixture_file_upload('avatar.png')
         user.reload
-        byebug
       end
     end
   end
