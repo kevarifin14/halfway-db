@@ -10,9 +10,10 @@ module V1
 
     def update
       @user = User.find(params.require(:id))
-      @user.update!(user_params)
       if params.include?(:avatar)
         @user.update!(avatar: params.require(:avatar))
+      else
+        @user.update!(user_params)
       end
       @user.reload
       render json: @user
