@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
                       medium: '300x300>',
                       thumb: '100x100>',
                     },
-                    default_url: '/assets/images/unknown.png'
+                    default_url: '/assets/unknown.png'
   do_not_validate_attachment_file_type :avatar
   # validates_attachment_content_type :avatar,
   #                                   content_type: {
