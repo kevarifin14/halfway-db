@@ -60,11 +60,15 @@ RSpec.describe V1::UsersController do
         Rails.root.join('spec', 'fixtures', 'avatar.png')
       end
       let(:avatar_params) do
-        updated_params.merge(avatar: fixture_file_upload('avatar.png'))
+        { avatar: fixture_file_upload('avatar.png') }
       end
       it 'allows users to update their avatar' do
-        put :update, id: user, user: avatar_params
+        put :update,
+            id: user,
+            user: updated_params,
+            avatar: fixture_file_upload('avatar.png')
         user.reload
+        byebug
       end
     end
   end

@@ -11,6 +11,9 @@ module V1
     def update
       @user = User.find(params.require(:id))
       @user.update!(user_params)
+      if params.include?(:avatar)
+        @user.update!(avatar: params.require(:avatar))
+      end
       @user.reload
       render json: @user
     end
@@ -18,7 +21,7 @@ module V1
     private
 
     def user_params
-      params.require(:user).permit(:longitude, :latitude, :avatar)
+      params.require(:user).permit(:longitude, :latitude)
     end
   end
 end
