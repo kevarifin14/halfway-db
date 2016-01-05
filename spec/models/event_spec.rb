@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Event do
   describe 'default_scope' do
-    let!(:third) { create(described_class, date: '2015-03-01') }
-    let!(:first) { create(described_class, date: '2015-05-01') }
+    let!(:first) { create(described_class, date: '2015-03-01') }
+    let!(:third) { create(described_class, date: '2015-05-01') }
     let!(:second) { create(described_class, date: '2015-04-01') }
 
     it 'orders them chronologically' do
