@@ -11,12 +11,14 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar,
                     storage: :s3,
+                    s3_host_name: 's3-us-west-1.amazonaws.com',
                     bucket: 'halfway',
                     styles: {
                       medium: '300x300>',
                       thumb: '100x100>',
                     },
                     default_url: '/assets/unknown.png'
+
   do_not_validate_attachment_file_type :avatar
   # validates_attachment_content_type :avatar,
   #                                   content_type: {
