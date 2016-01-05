@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   after_create :update_access_token!
 
   has_attached_file :avatar,
+                    storage: :s3,
+                    bucket: 'halfway',
                     styles: {
                       medium: '300x300>',
                       thumb: '100x100>',

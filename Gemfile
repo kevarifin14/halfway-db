@@ -12,7 +12,7 @@ gem 'method_man' # Defines a MethodObject class
 gem 'yelp' # For yelp api
 gem 'rack-cors' # Allow Ionic to make calls to API
 gem 'paperclip' # File attachment management for ActiveRecord
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 group :development do
   gem 'annotate'
