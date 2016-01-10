@@ -1,5 +1,5 @@
 require './lib/halfway_location_retriever'
-# require './app/serializers/V1/events_serializer'
+require './app/serializers/V1/event_serializer'
 
 module V1
   # CRUD for events
@@ -11,7 +11,7 @@ module V1
 
     def show
       @event = event
-      render json: event
+      render json: event, serializer: V1::EventSerializer
     end
 
     def create
