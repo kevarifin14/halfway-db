@@ -21,7 +21,8 @@ RSpec.describe V1::SessionsController do
     "\"access_token\":\"#{user.access_token}\","\
     "\"username\":\"#{user.username}\","\
     "\"longitude\":\"15.0\","\
-    "\"latitude\":\"15.0\"}"
+    "\"latitude\":\"15.0\","\
+    "\"avatar\":\"/assets/unknown.png\"}"
   end
 
   describe 'POST #create' do

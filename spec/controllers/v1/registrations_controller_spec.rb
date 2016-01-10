@@ -31,7 +31,8 @@ RSpec.describe V1::RegistrationsController do
         "\"access_token\":\"#{user.access_token}\","\
         "\"username\":\"#{user.username}\","\
         "\"longitude\":\"69.0\","\
-        "\"latitude\":\"54.0\"}"
+        "\"latitude\":\"54.0\","\
+        "\"avatar\":\"/assets/unknown.png\"}"
       )
     end
   end

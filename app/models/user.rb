@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   #                                     content_type: 'image/png',
   #                                   }
 
+  default_scope { order(username: :asc) }
+
   validates :username, presence: true
   validates :email, presence: true
 

@@ -41,6 +41,16 @@ RSpec.describe User do
     it { is_expected.to have_db_column(:avatar_updated_at).of_type(:datetime) }
   end
 
+  describe 'default_scope' do
+    let!(:second) { create(User, username: 'bob') }
+    let!(:first) { create(User, username: 'alfred') }
+    let!(:third) { create(User, username: 'clark') }
+
+    it 'orders them alphabetically' do
+      expect(described_class.all).to eq([first, second, third])
+    end
+  end
+
   describe 'scopes' do
     describe 'accepted_event_invitation' do
       let(:invited_and_attending_user) { create(User) }
