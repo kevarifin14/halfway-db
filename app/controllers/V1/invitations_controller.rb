@@ -3,6 +3,11 @@ require './lib/halfway_location_retriever'
 module V1
   # CRUD for invitations
   class InvitationsController < ApplicationController
+    def index
+      @invitations = event.invitations
+      render json: @invitations, root: 'invitations'
+    end
+
     def update
       @invitation = Invitation.find(params.require(:id))
       @invitation.update(invitation_params)
@@ -15,17 +20,21 @@ module V1
       params.require(:invitation).permit(:rsvp)
     end
 
-    def update_halfway_location
-      event.update(
-        HalfwayLocationRetriever.call(
-          event: event,
-          search_param: event.search_param,
-        )
-      )
+    def event
+      Event.find(event_id)
     end
 
-    def event
-      @invitation.event
+    def event_id
+      params.require(:event_id)
+    end
+
+    def update_halfway_location
+      @invitation.event.update(
+        HalfwayLocationRetriever.call(
+          event: @invitation.event,
+          search_param: @invitation.event.search_param,
+        )
+      )
     end
   end
 end

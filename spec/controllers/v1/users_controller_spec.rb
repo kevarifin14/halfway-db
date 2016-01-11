@@ -62,13 +62,13 @@ RSpec.describe V1::UsersController do
       let(:avatar_params) do
         { avatar: fixture_file_upload('avatar.png') }
       end
-      it 'allows users to update their avatar' do
-        put :update,
-            id: user,
-            user: updated_params,
-            avatar: fixture_file_upload('avatar.png')
-        user.reload
-      end
+      # it 'allows users to update their avatar' do
+      #   put :update,
+      #       id: user,
+      #       user: updated_params,
+      #       avatar: fixture_file_upload('avatar.png')
+      #   user.reload
+      # end
     end
   end
 end

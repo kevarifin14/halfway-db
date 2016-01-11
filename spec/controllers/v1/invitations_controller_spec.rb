@@ -23,6 +23,48 @@ RSpec.describe V1::InvitationsController do
       .and_return(meeting_point_data)
   end
 
+  describe 'GET #index' do
+    def req_index
+      get :index, event_id: event
+    end
+
+    before { req_index }
+
+    specify { expect(response).to be_successful }
+
+    it 'renders the correct invitations' do
+      expect(JSON.parse(response.body)).to match_array(
+        'invitations' =>
+          [
+            {
+              'id' => user_invitation.id,
+              'event_id' => user_invitation.event_id,
+              'user_id' => user_invitation.user_id,
+              'created_at' =>
+                JSON.parse(response.body).fetch('invitations')
+                  .first.fetch('created_at'),
+              'updated_at' =>
+                JSON.parse(response.body).fetch('invitations')
+                  .first.fetch('updated_at'),
+              'rsvp' => false,
+            },
+            {
+              'id' => creator_invitation.id,
+              'event_id' => creator_invitation.event_id,
+              'user_id' => creator_invitation.user_id,
+              'created_at' =>
+                JSON.parse(response.body).fetch('invitations')
+                  .second.fetch('created_at'),
+              'updated_at' =>
+                JSON.parse(response.body).fetch('invitations')
+                  .second.fetch('updated_at'),
+              'rsvp' => true,
+            },
+          ],
+      )
+    end
+  end
+
   describe 'PUT #update' do
     def put_update
       put :update, id: user_invitation, invitation: invitation_params
