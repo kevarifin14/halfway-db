@@ -22,14 +22,14 @@ RSpec.describe HalfwayCalculator do
     create(
       User,
       latitude: 45,
-      longitude: 45
+      longitude: 45,
     )
   end
   let(:third_user) do
     create(
       User,
       latitude: 13,
-      longitude: 32
+      longitude: 32,
     )
   end
 

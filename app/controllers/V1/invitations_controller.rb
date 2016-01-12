@@ -10,7 +10,7 @@ module V1
 
     def update
       @invitation = Invitation.find(params.require(:id))
-      @invitation.update(invitation_params)
+      @invitation.update!(invitation_params)
       update_halfway_location
     end
 
