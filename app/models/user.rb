@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
                       medium: '300x300>',
                       thumb: '100x100>',
                     },
-                    default_url: '/assets/unknown.png'
+                    default_url:
+                      'https://s3-us-west-1.amazonaws.com/halfway/unknown.png'
 
   do_not_validate_attachment_file_type :avatar
   # validates_attachment_content_type :avatar,
