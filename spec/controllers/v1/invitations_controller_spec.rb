@@ -4,7 +4,9 @@ RSpec.describe V1::InvitationsController do
   let!(:user) { create(User, latitude: 20, longitude: 20) }
   let!(:creator) { create(User, latitude: 10, longitude: 10) }
   let(:event) { create(Event) }
-  let!(:user_invitation) { create(Invitation, user: user, event: event) }
+  let!(:user_invitation) do
+    create(Invitation, user: user, event: event, rsvp: false)
+  end
   let!(:creator_invitation) do
     create(Invitation, user: creator, event: event, rsvp: true)
   end
