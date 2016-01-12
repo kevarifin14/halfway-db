@@ -48,11 +48,10 @@ RSpec.describe V1::UsersController do
       put_update
       user.reload
       body = JSON.parse(response.body)
-
-      expect(body).to include('username' => user.username)
-      expect(body).to include('email' => user.email)
-      expect(body).to include('latitude' => user.latitude.to_s)
-      expect(body).to include('longitude' => user.longitude.to_s)
+      expect(body.fetch('user')).to include('username' => user.username)
+      expect(body.fetch('user')).to include('email' => user.email)
+      expect(body.fetch('user')).to include('latitude' => user.latitude.to_s)
+      expect(body.fetch('user')).to include('longitude' => user.longitude.to_s)
     end
 
     context 'updating avatars' do
