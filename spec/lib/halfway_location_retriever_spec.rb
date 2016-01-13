@@ -19,6 +19,14 @@ RSpec.describe HalfwayLocationRetriever do
 
   it 'gets the correct location' do
     expect(described_class.call(event: event, search_param: search_param))
-      .to eq(meeting_point: 'Kiraku', address: '2566B Telegraph Ave')
+      .to eq(
+        meeting_point: 'Kiraku',
+        address: '2566B Telegraph Ave',
+        latitude: 37.863683,
+        longitude: -122.258976,
+        image:
+          'http://s3-media2.fl.yelpcdn.com' \
+          '/bphoto/qJ7vw6e9_ScvEbnfFxvEfQ/ms.jpg',
+      )
   end
 end

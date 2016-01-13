@@ -5,12 +5,19 @@ HalfwayLocationRetriever = MethodObject.new(:event, :search_param) do
   def call
     {
       meeting_point: yelp_client_result.name,
-      address: yelp_client_result.location.address.first,
+      address: yelp_location_data.address.first,
+      latitude: yelp_location_data.coordinate.latitude,
+      longitude: yelp_location_data.coordinate.longitude,
+      image: yelp_client_result.image_url,
     }
   end
 
+  def yelp_location_data
+    @yelp_location_data ||= yelp_client_result.location
+  end
+
   def yelp_client_result
-    Yelp.client.search_by_coordinates(
+    @yelp_client_result ||= Yelp.client.search_by_coordinates(
       coordinates,
       params,
     ).businesses[0]

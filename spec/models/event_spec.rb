@@ -26,6 +26,9 @@ RSpec.describe Event do
       is_expected.to have_db_column(:search_param).of_type(:string)
         .with_options(null: false)
     end
+    it { is_expected.to have_db_column(:longitude).of_type(:decimal) }
+    it { is_expected.to have_db_column(:latitude).of_type(:decimal) }
+    it { is_expected.to have_db_column(:image).of_type(:string) }
   end
 
   describe 'associations' do

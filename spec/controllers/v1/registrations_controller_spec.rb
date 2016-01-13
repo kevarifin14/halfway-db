@@ -32,7 +32,7 @@ RSpec.describe V1::RegistrationsController do
         "\"username\":\"#{user.username}\","\
         "\"longitude\":\"69.0\","\
         "\"latitude\":\"54.0\","\
-        "\"avatar\":\"/assets/unknown.png\"}"
+        "\"avatar\":\"https://s3-us-west-1.amazonaws.com/halfway/unknown.png\"}"
       )
     end
   end

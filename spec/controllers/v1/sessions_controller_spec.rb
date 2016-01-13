@@ -22,7 +22,7 @@ RSpec.describe V1::SessionsController do
     "\"username\":\"#{user.username}\","\
     "\"longitude\":\"15.0\","\
     "\"latitude\":\"15.0\","\
-    "\"avatar\":\"/assets/unknown.png\"}"
+    "\"avatar\":\"https://s3-us-west-1.amazonaws.com/halfway/unknown.png\"}"
   end
 
   describe 'POST #create' do
