@@ -75,6 +75,9 @@ RSpec.describe V1::EventsController do
                 'avatar_updated_at' => nil,
               },
             ],
+            'latitude' => nil,
+            'longitude' => nil,
+            'image' => nil,
           },
           {
             'id' => event2.id,
@@ -103,6 +106,9 @@ RSpec.describe V1::EventsController do
                 'avatar_updated_at' => nil,
               },
             ],
+            'latitude' => nil,
+            'longitude' => nil,
+            'image' => nil,
           },
         ],
       )
@@ -129,6 +135,9 @@ RSpec.describe V1::EventsController do
               'address' => nil,
               'search_param' => 'restaurant',
               'friends' => [],
+              'latitude' => nil,
+              'longitude' => nil,
+              'image' => nil,
             },
           ]
         ]

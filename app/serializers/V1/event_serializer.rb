@@ -7,7 +7,10 @@ module V1
                :meeting_point,
                :address,
                :search_param,
-               :friends
+               :friends,
+               :latitude,
+               :longitude,
+               :image
 
     def friends
       object.users
