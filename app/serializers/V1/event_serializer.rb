@@ -13,7 +13,9 @@ module V1
                :image
 
     def friends
-      object.users
+      object.users.map do |user|
+        V1::UserSerializer.new(user, scope: scope, root: false, event: object)
+      end
     end
   end
 end

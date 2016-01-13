@@ -58,21 +58,12 @@ RSpec.describe V1::EventsController do
             'friends' => [
               {
                 'id' => user.id,
+                'avatar' =>
+                  'https://s3-us-west-1.amazonaws.com/halfway/unknown.png',
                 'email' => user.email,
-                'created_at' =>
-                  body.fetch('events').first
-                    .fetch('friends').first.fetch('created_at'),
-                'updated_at' =>
-                  body.fetch('events').first
-                    .fetch('friends').first.fetch('updated_at'),
-                'access_token' => user.access_token,
                 'username' => user.username,
                 'latitude' => '15.0',
                 'longitude' => '15.0',
-                'avatar_file_name' => nil,
-                'avatar_content_type' => nil,
-                'avatar_file_size' => nil,
-                'avatar_updated_at' => nil,
               },
             ],
             'latitude' => nil,
@@ -89,21 +80,12 @@ RSpec.describe V1::EventsController do
             'friends' => [
               {
                 'id' => user.id,
+                'avatar' =>
+                  'https://s3-us-west-1.amazonaws.com/halfway/unknown.png',
                 'email' => user.email,
-                'created_at' =>
-                  body.fetch('events').first
-                    .fetch('friends').first.fetch('created_at'),
-                'updated_at' =>
-                  body.fetch('events').first
-                    .fetch('friends').first.fetch('updated_at'),
-                'access_token' => user.access_token,
                 'username' => user.username,
                 'latitude' => '15.0',
                 'longitude' => '15.0',
-                'avatar_file_name' => nil,
-                'avatar_content_type' => nil,
-                'avatar_file_size' => nil,
-                'avatar_updated_at' => nil,
               },
             ],
             'latitude' => nil,
