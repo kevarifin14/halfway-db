@@ -19,12 +19,13 @@ module V1
       @event.users << user
       rsvp_user
       @event.users << event_invitees
-      # @event.update!(
-      #   HalfwayLocationRetriever.call(
-      #     event: @event,
-      #     search_param: event_params.fetch(:search_param),
-      #   )
-      # )
+      @event.update!(
+        HalfwayLocationRetriever.call(
+          event: @event,
+          search_param: event_params.fetch(:search_param),
+        )
+      )
+      @event.reload
       render json: @event
     end
 
