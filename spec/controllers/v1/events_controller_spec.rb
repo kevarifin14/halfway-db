@@ -11,7 +11,13 @@ RSpec.describe V1::EventsController do
   let(:search_param) { 'restaurant' }
 
   let(:meeting_point_data) do
-    { meeting_point: meeting_point, address: address }
+    {
+      meeting_point: meeting_point,
+      address: address,
+      latitude: 100.0,
+      longitude: 100.0,
+      image: 'img_file.jpg',
+    }
   end
   let(:address) { '1234 Telegraph Ave.' }
   let(:meeting_point) { 'Katsumi' }
