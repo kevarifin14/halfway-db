@@ -37,4 +37,19 @@ RSpec.describe V1::FriendshipsController do
       expect(friend.friends).not_to include(user)
     end
   end
+
+  describe 'DELETE #destroy' do
+    before do
+      user.friends.append(friend)
+      friend.friends.append(user)
+      user.reload
+      friend.reload
+      delete :destroy, user_id: user, friend_id: friend
+    end
+
+    it 'deletes friendship between the two users' do
+      expect(user.friends).not_to include(friend)
+      expect(friend.friends).not_to include(user)
+    end
+  end
 end

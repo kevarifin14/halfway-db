@@ -6,7 +6,7 @@
 
 Rails.application.routes.draw do
   shallow do
-    devise_for :user, only: []
+    devise_for :user
 
     namespace :v1, defaults: { format: :json } do
       resource :login, only: [:create], controller: :sessions
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :update] do
         resources :friend_requests, only: [:index]
         resources :friendships, only: [:index, :create]
+        resource :friendships, only: [:destroy]
         resources :groups, only: [:index, :create]
         resources :events, only: [:index, :create, :destroy, :show] do
           resources :invitations, only: [:index, :update]

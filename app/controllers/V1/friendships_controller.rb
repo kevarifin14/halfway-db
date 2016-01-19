@@ -10,6 +10,14 @@ module V1
       render json: friend
     end
 
+    def destroy
+      user.friends.delete(friend)
+      friend.friends.delete(user)
+      user.reload
+      friend.reload
+      render json: friend
+    end
+
     private
 
     def user

@@ -13,5 +13,10 @@ RSpec.describe V1::FriendshipsController do
       expect(post: '/v1/users/1/friendships')
         .to route_to('v1/friendships#create', user_id: '1', format: :json)
     end
+
+    it 'routes to #destory' do
+      expect(delete: '/v1/users/1/friendships')
+        .to route_to('v1/friendships#destroy', user_id: '1', format: :json)
+    end
   end
 end
