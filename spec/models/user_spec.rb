@@ -7,6 +7,7 @@ RSpec.describe User do
     it { is_expected.to have_many(:invitations) }
     it { is_expected.to have_many(:groups).through(:memberships) }
     it { is_expected.to have_many(:events).through(:invitations) }
+    it { is_expected.to have_one(:phone_number) }
   end
 
   describe 'columns' do

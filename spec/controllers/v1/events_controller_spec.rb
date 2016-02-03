@@ -121,8 +121,8 @@ RSpec.describe V1::EventsController do
               'longitude' => nil,
               'image' => nil,
             },
-          ]
-        ]
+          ],
+        ],
       )
     end
   end

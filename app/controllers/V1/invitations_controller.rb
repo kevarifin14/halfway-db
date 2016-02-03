@@ -35,7 +35,7 @@ module V1
         HalfwayLocationRetriever.call(
           event: @invitation.event,
           search_param: @invitation.event.search_param,
-        )
+        ),
       )
     end
   end

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   after_create :update_access_token!
 
+  has_one :phone_number
+
   has_attached_file :avatar,
                     storage: :s3,
                     s3_host_name: 's3-us-west-1.amazonaws.com',

@@ -23,7 +23,7 @@ module V1
         HalfwayLocationRetriever.call(
           event: @event,
           search_param: event_params.fetch(:search_param),
-        )
+        ),
       )
       @event.reload
       render json: @event
