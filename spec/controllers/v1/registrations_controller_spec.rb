@@ -9,7 +9,8 @@ RSpec.describe V1::RegistrationsController do
            password: password,
            password_confirmation: password,
            longitude: longitude,
-           latitude: latitude
+           latitude: latitude,
+           phone_number: phone_number
     end
 
     let(:email) { 'user@foo.com' }
@@ -18,6 +19,7 @@ RSpec.describe V1::RegistrationsController do
     let(:longitude) { 69.0 }
     let(:latitude) { 54.0 }
     let(:user) { User.last }
+    let(:phone_number) { '4082420394'}
 
     it 'creates a new user' do
       expect { post_create }.to change(User, :count).by(1)

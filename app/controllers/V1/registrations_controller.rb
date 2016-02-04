@@ -7,6 +7,9 @@ module V1
 
     def create
       @user = User.create(params_for_user)
+      @phone_number = PhoneNumber.create(phone_number: phone_number, user: @user)
+      @phone_number.generate_pin
+      @phone_number.send_pin
       render json: @user, serializer: V1::SessionsSerializer, root: nil
     end
 
@@ -21,6 +24,10 @@ module V1
         latitude: params.fetch(:latitude),
         longitude: params.fetch(:longitude),
       }
+    end
+
+    def phone_number
+      params.fetch(:phone_number)
     end
   end
 end
