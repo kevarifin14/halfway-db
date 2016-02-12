@@ -9,7 +9,7 @@ module V1
       @phone_number =
         PhoneNumber.find_by(phone_number: params.require(:hidden_phone_number))
       @phone_number.verify(params.require(:pin_number))
-      render json: @user, serializer: V1::SessionsSerializer, root: nil
+      render json: @phone_number
     end
   end
 end
