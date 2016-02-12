@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     devise_for :user
 
     namespace :v1, defaults: { format: :json } do
-      resources :phone_numbers, only: [:create]
       resource :login, only: [:create], controller: :sessions
       resource :signup, only: [:create], controller: :registrations
       resources :users, only: [:index, :update] do
@@ -21,6 +20,7 @@ Rails.application.routes.draw do
           resources :invitations, only: [:index, :update]
         end
       end
+      post 'phone_numbers/verify' => 'phone_numbers#verify'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

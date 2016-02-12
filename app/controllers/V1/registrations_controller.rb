@@ -7,7 +7,10 @@ module V1
 
     def create
       @user = User.create(params_for_user)
-      @phone_number = PhoneNumber.create(phone_number: phone_number, user: @user)
+      @phone_number = PhoneNumber.create(
+        phone_number: phone_number,
+        user: @user
+      )
       @phone_number.generate_pin
       @phone_number.send_pin
       render json: @user, serializer: V1::SessionsSerializer, root: nil
