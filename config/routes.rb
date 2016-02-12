@@ -6,8 +6,6 @@
 
 Rails.application.routes.draw do
   shallow do
-    devise_for :user
-
     namespace :v1, defaults: { format: :json } do
       resource :login, only: [:create], controller: :sessions
       resource :signup, only: [:create], controller: :registrations
