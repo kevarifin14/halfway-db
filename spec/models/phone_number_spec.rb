@@ -1,5 +1,4 @@
-require 'active_record_helper'
-require './app/models/phone_number'
+require 'rails_helper'
 
 RSpec.describe PhoneNumber do
   subject { described_class.create }
@@ -21,6 +20,26 @@ RSpec.describe PhoneNumber do
   describe '#generate_pin' do
     it 'generates a random pin' do
       expect(subject.generate_pin).to eq('1234')
+    end
+  end
+
+  describe '#verify' do
+    subject { described_class.create(pin: '1234') }
+
+    before { subject.verify(pin) }
+
+    context 'PIN matches' do
+      let(:pin) { '1234' }
+      it 'verifies the phone number' do
+        expect(subject.verified).to eq(true)
+      end
+    end
+
+    context 'PIN does not match' do
+      let(:pin) { '1232' }
+      it 'does not verify the phone number' do
+        expect(subject.verified).to eq(false)
+      end
     end
   end
 end

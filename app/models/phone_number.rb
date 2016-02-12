@@ -23,6 +23,7 @@ class PhoneNumber < ActiveRecord::Base
   end
 
   def verify(entered_pin)
-    update(verified: true) if self.pin == entered_pin
+    update(verified: self.pin == entered_pin)
+
   end
 end
