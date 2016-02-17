@@ -19,7 +19,7 @@ RSpec.describe V1::RegistrationsController do
     let(:longitude) { 69.0 }
     let(:latitude) { 54.0 }
     let(:user) { User.last }
-    let(:phone_number) { '4082420394'}
+    let(:phone_number) { '4082420394' }
 
     it 'creates a new user' do
       expect { post_create }.to change(User, :count).by(1)

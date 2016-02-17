@@ -25,7 +25,6 @@ module V1
           search_param: event_params.fetch(:search_param),
         ),
       )
-      @event.reload
       render json: @event
     end
 

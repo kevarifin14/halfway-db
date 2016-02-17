@@ -18,12 +18,11 @@ class PhoneNumber < ActiveRecord::Base
     twilio_client.messages.create(
       to: phone_number,
       from: ENV['TWILIO_PHONE_NUMBER'],
-      body: "Your PIN is #{pin}"
+      body: "Your PIN is #{pin}",
     )
   end
 
   def verify(entered_pin)
-    update(verified: self.pin == entered_pin)
-
+    update(verified: pin == entered_pin)
   end
 end
