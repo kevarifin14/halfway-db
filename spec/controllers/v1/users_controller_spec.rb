@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'rack/test'
 
 RSpec.describe V1::UsersController do
   let!(:user) { create(User, latitude: 15, longitude: 12) }
