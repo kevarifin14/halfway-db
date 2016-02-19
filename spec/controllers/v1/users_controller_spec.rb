@@ -13,9 +13,41 @@ RSpec.describe V1::UsersController do
   describe 'GET #index' do
     before { get :index }
 
+    let(:users_json) do
+      {
+        'users' => [
+          {
+            'id' => User.first.id,
+            'phone_number' => '4088334900',
+            'verified' => false,
+            'access_token' => User.first.access_token,
+            'latitude' => '15.0',
+            'longitude' => '12.0',
+          },
+          {
+            'id' => User.second.id,
+            'phone_number' => '4088334900',
+            'verified' => false,
+            'access_token' => User.second.access_token,
+            'latitude' => '15.0',
+            'longitude' => '15.5',
+          },
+          {
+            'id' => User.third.id,
+            'phone_number' => '4088334900',
+            'verified' => false,
+            'access_token' => User.third.access_token,
+            'latitude' => '15.0',
+            'longitude' => '15.5',
+          },
+        ],
+      }
+    end
+
     specify { expect(response).to be_successful }
 
     it 'displays all users in a json hash' do
+      expect(JSON(response.body)).to eq(users_json)
     end
   end
 
@@ -26,8 +58,8 @@ RSpec.describe V1::UsersController do
         longitude: new_longitude,
       )
     end
-    let(:new_latitude) { 4 }
-    let(:new_longitude) { 2 }
+    let(:new_latitude) { 4.0 }
+    let(:new_longitude) { 2.0 }
 
     def put_update
       put :update, id: user, user: updated_params
@@ -37,37 +69,22 @@ RSpec.describe V1::UsersController do
       expect { put_update }.not_to change(User, :count)
     end
 
+    let(:user_json) do
+      {
+        'user' => {
+          'id' => user.id,
+          'phone_number' => user.phone_number,
+          'verified' => user.verified,
+          'access_token' => user.access_token,
+          'latitude' => new_latitude.to_s,
+          'longitude' => new_longitude.to_s,
+        },
+      }
+    end
+
     it 'updates user attributes' do
       put_update
-      user.reload
-      expect(user.latitude).to eq(new_latitude)
-      expect(user.longitude).to eq(new_longitude)
-    end
-
-    it 'displays the update user in a json hash' do
-      put_update
-      user.reload
-      body = JSON.parse(response.body)
-      expect(body.fetch('user')).to include('username' => user.username)
-      expect(body.fetch('user')).to include('email' => user.email)
-      expect(body.fetch('user')).to include('latitude' => user.latitude.to_s)
-      expect(body.fetch('user')).to include('longitude' => user.longitude.to_s)
-    end
-
-    context 'updating avatars' do
-      let(:fixture_file_path) do
-        Rails.root.join('spec', 'fixtures', 'avatar.png')
-      end
-      let(:avatar_params) do
-        { avatar: fixture_file_upload('avatar.png') }
-      end
-      # it 'allows users to update their avatar' do
-      #   put :update,
-      #       id: user,
-      #       user: updated_params,
-      #       avatar: fixture_file_upload('avatar.png')
-      #   user.reload
-      # end
+      expect(JSON.parse(response.body)).to eq(user_json)
     end
   end
 end

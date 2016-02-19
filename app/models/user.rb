@@ -1,43 +1,7 @@
-require 'devise'
-require 'devise/orm/active_record'
-require_relative 'membership'
-require_relative 'event'
-
-# Basic user class that holds user information
+# User class for authentication
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :recoverable, :validatable
-
   after_create :update_access_token!
 
-  has_one :phone_number
-
-  has_attached_file :avatar,
-                    storage: :s3,
-                    s3_host_name: 's3-us-west-1.amazonaws.com',
-                    bucket: 'halfway',
-                    styles: {
-                      medium: '300x300>',
-                      thumb: '100x100>',
-                    },
-                    default_url:
-                      'https://s3-us-west-1.amazonaws.com/halfway/unknown.png'
-
-  do_not_validate_attachment_file_type :avatar
-  # validates_attachment_content_type :avatar,
-  #                                   content_type: {
-  #                                     content_type: 'image/png',
-  #                                   }
-
-  default_scope { order(username: :asc) }
-
-  validates :username, presence: true
-  validates :email, presence: true
-
-  has_and_belongs_to_many :friends,
-                          class_name: 'User',
-                          join_table: :friendships,
-                          foreign_key: :user_id,
-                          association_foreign_key: :friend_user_id
   has_many :memberships
   has_many :groups, through: :memberships
 
@@ -48,20 +12,27 @@ class User < ActiveRecord::Base
     event.invitations.where(rsvp: true).map(&:user)
   end)
 
-  scope(:reciprocated_friends, lambda do |user|
-    find_by(username: user.username).friends.select do |friend|
-      friend.friends.exists?(user.id)
-    end
-  end)
+  def generate_pin
+    self.pin = rand(0000..9999).to_s.rjust(4, '0')
+    save
+  end
 
-  scope(:friend_requests, lambda do |current_user|
-    all.select do |user|
-      !current_user.friends.include?(user) and
-        user.friends.include?(current_user)
-    end
-  end)
+  def twilio_client
+    Twilio::REST::Client
+      .new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+  end
 
-  private
+  def send_pin
+    twilio_client.messages.create(
+      to: phone_number,
+      from: ENV['TWILIO_PHONE_NUMBER'],
+      body: "Your PIN is #{pin}",
+    )
+  end
+
+  def verify(entered_pin)
+    update(verified: pin == entered_pin)
+  end
 
   def update_access_token!
     self.access_token = "#{id}:#{Devise.friendly_token}"

@@ -1,26 +1,14 @@
-# curl halfway-db.herokuapp.com/v1/login --data "email=foo@bar.com&username=user&password=Password1"
-# curl localhost:3000/v1/login --data "email=foo@bar.com&username=user&password=Password1"
-# curl localhost:3000/v1/signup --data "email=foo@bars.com&username=users&password=Password1&password_confirmation=Password1"
-# curl halfway-db.herokuapp.com/v1/signup --data "email=foo@bars.com&username=users&password=Password1&password_confirmation=Password1"
-
-
 Rails.application.routes.draw do
   shallow do
-    devise_for :user
-
     namespace :v1, defaults: { format: :json } do
-      resource :login, only: [:create], controller: :sessions
-      resource :signup, only: [:create], controller: :registrations
+      resources :login, only: [:create]
+      resources :signup, only: [:create]
       resources :users, only: [:index, :update] do
-        resources :friend_requests, only: [:index]
-        resources :friendships, only: [:index, :create]
-        resource :friendships, only: [:destroy]
         resources :groups, only: [:index, :create]
         resources :events, only: [:index, :create, :destroy, :show] do
           resources :invitations, only: [:index, :update]
         end
       end
-      post 'phone_numbers/verify' => 'phone_numbers#verify'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

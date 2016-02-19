@@ -7,7 +7,7 @@ class Tests < Thor
 
   COMMANDS = {
     'rubocop' => 'rubocop',
-    'rspec' => 'rspec',
+    'rspec' => 'bundle exec rspec',
   }
 
   desc :check, 'run all CI tasks'

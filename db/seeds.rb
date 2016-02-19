@@ -5,23 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-def create_user!(user_attributes)
-  User.create!(
-    user_attributes.merge(
-      password: 'password',
-      latitude: 0,
-      longitude: 0,
-    ),
-  )
-end
 
-create_user!(
-  email: 'foo@bar.com',
-  username: 'user',
-)
-
-create_user!(
-  email: 'kevarifin14@gmail.com',
-  username: 'kevarifin14',
-
-)

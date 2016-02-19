@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe V1::GroupsController do
   describe 'routing' do
-    include_context 'authenticated as a User'
-
     it 'routes to #index' do
       expect(get: 'v1/users/1/groups')
         .to route_to('v1/groups#index', user_id: '1', format: :json)

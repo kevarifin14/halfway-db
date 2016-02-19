@@ -45,25 +45,23 @@ RSpec.describe V1::EventsController do
     it_behaves_like 'a successful action'
 
     it 'renders json showing the users events' do
-      body = JSON.parse(response.body)
-      expect(body).to match_array(
+      expect(JSON.parse(response.body)).to eq(
         'events' => [
           {
             'id' => event1.id,
-            'description' => 'Event',
             'date' => '2015-06-06T00:00:00.000Z',
+            'description' => 'Event',
             'meeting_point' => nil,
             'address' => nil,
             'search_param' => 'restaurant',
             'friends' => [
               {
                 'id' => user.id,
-                'avatar' =>
-                  'https://s3-us-west-1.amazonaws.com/halfway/unknown.png',
-                'email' => user.email,
-                'username' => user.username,
+                'phone_number' => user.phone_number,
+                'verified' => false,
+                'access_token' => user.access_token,
                 'latitude' => '15.0',
-                'longitude' => '15.0',
+                'longitude' => '15.5',
               },
             ],
             'latitude' => nil,
@@ -80,12 +78,11 @@ RSpec.describe V1::EventsController do
             'friends' => [
               {
                 'id' => user.id,
-                'avatar' =>
-                  'https://s3-us-west-1.amazonaws.com/halfway/unknown.png',
-                'email' => user.email,
-                'username' => user.username,
+                'phone_number' => user.phone_number,
+                'verified' => false,
+                'access_token' => user.access_token,
                 'latitude' => '15.0',
-                'longitude' => '15.0',
+                'longitude' => '15.5',
               },
             ],
             'latitude' => nil,
