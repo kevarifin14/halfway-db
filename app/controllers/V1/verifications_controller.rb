@@ -3,8 +3,7 @@ module V1
   class VerificationsController < ApplicationController
     def update
       user.verify(pin)
-    end
-
+      render json: user, serializer: V1::UserSerializer, root: 'user'
     private
 
     def pin
