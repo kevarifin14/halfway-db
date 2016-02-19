@@ -1,4 +1,5 @@
 module V1
+  # CRUD for user phone number verification
   class VerificationsController < ApplicationController
     def update
       user.verify(pin)
