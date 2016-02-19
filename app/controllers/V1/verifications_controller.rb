@@ -4,6 +4,8 @@ module V1
     def update
       user.verify(pin)
       render json: user, serializer: V1::UserSerializer, root: 'user'
+    end
+
     private
 
     def pin
