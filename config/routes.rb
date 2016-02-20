@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :signup, only: [:create]
       resources :users, only: [:index, :update] do
         resource :verification, only: [:update]
+        resource :logout, only: [:update]
         resources :groups, only: [:index, :create]
         resources :events, only: [:index, :create, :destroy, :show] do
           resources :invitations, only: [:index, :update]
