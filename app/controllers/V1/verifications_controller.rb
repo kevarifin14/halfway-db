@@ -1,6 +1,8 @@
 module V1
   # CRUD for user phone number verification
   class VerificationsController < ApplicationController
+    skip_before_action :authenticate_user_from_token!
+
     def update
       user.verify(pin)
       render json: user, serializer: V1::UserSerializer, root: 'user'

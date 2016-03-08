@@ -5,7 +5,6 @@ RSpec.describe V1::VerificationsController do
 
   before do
     allow_any_instance_of(User).to receive(:generate_pin).and_return('1234')
-    request.env['HTTP_AUTHORIZATION'] = user.access_token
   end
 
   describe 'PUT #update' do
