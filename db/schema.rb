@@ -64,17 +64,6 @@ ActiveRecord::Schema.define(version: 20160218085423) do
   add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
-  create_table "phone_numbers", force: :cascade do |t|
-    t.string   "phone_number"
-    t.string   "pin"
-    t.boolean  "verified"
-    t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "phone_numbers", ["user_id"], name: "index_phone_numbers_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "phone_number"
     t.string   "pin"

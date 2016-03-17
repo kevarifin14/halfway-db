@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :update] do
         resource :verification, only: [:update]
         resource :logout, only: [:update]
+        resources :friends, only: [:index]
         resources :groups, only: [:index, :create]
         resources :events, only: [:index, :create, :destroy, :show] do
           resources :invitations, only: [:index, :update]
