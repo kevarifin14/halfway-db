@@ -13,7 +13,6 @@ gem 'yelp' # For yelp api
 gem 'rack-cors' # Allow Ionic to make calls to API
 gem 'paperclip' # File attachment management for ActiveRecord
 gem 'aws-sdk', '< 2.0'
-gem 'twilio-ruby'
 gem 'phony_rails'
 
 group :development do
@@ -31,4 +30,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
+end
+
+group :production do
+  gem 'thin'
 end
