@@ -94,9 +94,9 @@ RSpec.describe V1::FriendsController do
   end
 
 
-  describe 'GET #index' do
+  describe 'POST #create' do
     before do
-      get :index, user_id: user, contacts: contacts
+      post :create, user_id: user, contacts: contacts
     end
 
     it 'returns json hash of all users that match phone numbers' do

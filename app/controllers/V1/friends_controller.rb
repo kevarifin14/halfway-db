@@ -1,7 +1,7 @@
 module V1
   # CRUD for friends
   class FriendsController < ApplicationController
-    def index
+    def create
       @friends = friends
       render json: @friends, root: 'friends'
     end
