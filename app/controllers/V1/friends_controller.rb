@@ -6,7 +6,6 @@ module V1
     def create
       @friends = friends
       render json: @friends, root: 'friends'
-      puts response.body
     end
 
     private
