@@ -1,9 +1,12 @@
 module V1
   # CRUD for friends
   class FriendsController < ApplicationController
+    skip_before_action :authenticate_user_from_token!
+
     def create
       @friends = friends
       render json: @friends, root: 'friends'
+      puts response.body
     end
 
     private
@@ -32,7 +35,7 @@ module V1
     end
 
     def name(contact)
-      contact.fetch('name').fetch('formatted')
+      contact.fetch('name')
     end
 
     def user_attributes_to_include

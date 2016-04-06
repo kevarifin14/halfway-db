@@ -25,7 +25,7 @@ RSpec.describe HalfwayLocationRetriever do
         latitude: 37.863683,
         longitude: -122.258976,
         image:
-          'http://s3-media2.fl.yelpcdn.com' \
+          'https://s3-media2.fl.yelpcdn.com' \
           '/bphoto/qJ7vw6e9_ScvEbnfFxvEfQ/ms.jpg',
       )
   end
