@@ -17,12 +17,13 @@ module V1
         if user.id != current_user.id
           contacts.each do |contact|
             phone_numbers = contact.fetch('phoneNumbers')
-            break if phone_numbers.nil?
-            phone_numbers.each do |phoneNumber|
-              puts phoneNumber.fetch('value').phony_normalized
-              if phoneNumber.fetch('value').phony_normalized == user.phone_number
-                friends_list << attributes(user, contact)
-                break
+            if not phone_numbers.nil?
+              phone_numbers.each do |phoneNumber|
+                puts phoneNumber.fetch('value').phony_normalized
+                if phoneNumber.fetch('value').phony_normalized == user.phone_number
+                  friends_list << attributes(user, contact)
+                  break
+                end
               end
             end
           end
