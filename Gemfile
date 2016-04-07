@@ -14,6 +14,7 @@ gem 'rack-cors' # Allow Ionic to make calls to API
 gem 'paperclip' # File attachment management for ActiveRecord
 gem 'aws-sdk', '< 2.0'
 gem 'phony_rails'
+gem 'twilio-ruby'
 
 group :development do
   gem 'annotate'
