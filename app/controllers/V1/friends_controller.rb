@@ -13,13 +13,11 @@ module V1
     def friends
       friends_list = []
       User.all.each do |user|
-        puts user
         if user.id != current_user.id
           contacts.each do |contact|
             phone_numbers = contact.fetch('phoneNumbers')
             if not phone_numbers.nil?
               phone_numbers.each do |phoneNumber|
-                puts phoneNumber.fetch('value').phony_normalized
                 if phoneNumber.fetch('value').phony_normalized == user.phone_number
                   friends_list << attributes(user, contact)
                   break
