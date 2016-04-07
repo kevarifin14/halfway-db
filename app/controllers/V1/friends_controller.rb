@@ -13,21 +13,23 @@ module V1
     def friends
       friends_list = []
       User.all.each do |user|
-        if user.id != current_user.id
-          contacts.each do |contact|
-            phone_numbers = contact.fetch('phoneNumbers')
-            if not phone_numbers.nil?
-              phone_numbers.each do |phoneNumber|
-                if phoneNumber.fetch('value').phony_normalized == user.phone_number
-                  friends_list << attributes(user, contact)
-                  break
-                end
-              end
+        next if user.id == current_user.id
+        contacts.each do |contact|
+          phone_numbers = contact.fetch('phoneNumbers')
+          next if phone_numbers.nil?
+          phone_numbers.each do |number|
+            if contact_phone_number(number) == user.phone_number
+              friends_list << attributes(user, contact)
+              break
             end
           end
         end
       end
       friends_list
+    end
+
+    def contact_phone_number(number)
+      number.fetch('value').phony_normalized
     end
 
     def attributes(user, contact)
@@ -41,7 +43,7 @@ module V1
     end
 
     def user_attributes_to_include
-      ['id', 'phone_number', 'verified', 'access_token', 'latitude', 'longitude']
+      %w[id phone_number verified access_token latitude longitude]
     end
 
     def contacts

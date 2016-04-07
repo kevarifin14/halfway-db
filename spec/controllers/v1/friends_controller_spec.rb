@@ -7,16 +7,9 @@ RSpec.describe V1::FriendsController do
         'id' => 1,
         'rawId' => nil,
         'displayName' => nil,
-        'name' =>  {
-          'givenName' =>  'Kate',
-          'honorificSuffix' => nil,
-          'formatted' => 'Kate Bell',
-          'middleName' => nil,
-          'familyName' => 'Bell',
-          'honorificPrefix' => nil,
-        },
+        'name' => 'Kate Bell',
         'nickname' => nil,
-        'phoneNumbers' =>  [
+        'phoneNumbers' => [
           {
             'value' => '(555) 564-8583',
             'pref' => false,
@@ -35,14 +28,7 @@ RSpec.describe V1::FriendsController do
         'id' => 2,
         'rawId' => nil,
         'displayName' => nil,
-        'name' =>  {
-          'givenName' => 'Daniel',
-          'honorificSuffix' => 'Jr.',
-          'formatted' => 'Daniel Higgins Jr.',
-          'middleName' => nil,
-          'familyName' => 'Higgins',
-          'honorificPrefix' => nil,
-        },
+        'name' => 'Daniel Higgins Jr.',
         'nickname' => nil,
         'phoneNumbers' => [
           {
@@ -80,7 +66,7 @@ RSpec.describe V1::FriendsController do
           'longitude' => '15.5',
           'name' => 'Daniel Higgins Jr.',
         },
-      ]
+      ],
     }
   end
 
@@ -92,7 +78,6 @@ RSpec.describe V1::FriendsController do
   before do
     request.env['HTTP_AUTHORIZATION'] = user.access_token
   end
-
 
   describe 'POST #create' do
     before do
