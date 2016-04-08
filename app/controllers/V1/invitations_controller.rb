@@ -12,7 +12,7 @@ module V1
       @invitation = Invitation.find(params.require(:id))
       @invitation.update!(invitation_params)
       render json: @invitation, root: 'invitations'
-      update_halfway_location
+      update_halfway_location if @invitation.event.all_replied?
     end
 
     private
