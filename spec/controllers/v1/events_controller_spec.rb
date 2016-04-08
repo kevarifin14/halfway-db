@@ -125,39 +125,45 @@ RSpec.describe V1::EventsController do
   end
 
   describe 'POST #create' do
-    def post_create
+    def post_create(users)
       post :create,
            user_id: user,
            event: valid_event_attributes,
-           users: [invited_user, another_invited_user]
+           users: users
     end
 
     it_behaves_like 'a successful action'
 
     it 'creates an event' do
-      expect { post_create }.to change(Event, :count).by(1)
+      expect { post_create([]) }.to change(Event, :count).by(1)
     end
 
     it 'adds the user to the event and sets their rsvp as true' do
-      post_create
+      post_create([invited_user, another_invited_user])
       expect(Event.last.users).to include(user)
       expect(Invitation.find_by(user: user, event: Event.last).rsvp).to eq(true)
     end
 
     it 'updates location data based on all users that have rsvped' do
-      post_create
+      post_create([])
       expect(Event.last.address).to eq(address)
       expect(Event.last.meeting_point).to eq(meeting_point)
     end
 
+    it 'does not update location data if all users have not rsvped' do
+      post_create([invited_user, another_invited_user])
+      expect(Event.last.address).to eq(nil)
+      expect(Event.last.meeting_point).to eq(nil)
+    end
+
     it 'includes the specified users invited to event' do
-      post_create
+      post_create([invited_user, another_invited_user])
       expect(Event.last.users)
         .to match_array([user, invited_user, another_invited_user])
     end
 
     it 'renders json showing the event' do
-      post_create
+      post_create([invited_user, another_invited_user])
       body = JSON.parse(response.body)
 
       expect(body.fetch('event')).to include('description' => description)

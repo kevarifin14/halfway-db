@@ -11,7 +11,6 @@ module V1
     def update
       @invitation = Invitation.find(params.require(:id))
       @invitation.update!(invitation_params)
-      @invitation.reload
       render json: @invitation, root: 'invitations'
       update_halfway_location
     end

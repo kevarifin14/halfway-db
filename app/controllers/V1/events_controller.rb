@@ -16,15 +16,14 @@ module V1
 
     def create
       @event = Event.create(event_params)
-      @event.users << user
+      @event.users << invited_users
       rsvp_user
-      @event.users << event_invitees
       @event.update!(
         HalfwayLocationRetriever.call(
           event: @event,
           search_param: event_params.fetch(:search_param),
         ),
-      )
+      ) if @event.all_replied?
       render json: @event
     end
 
@@ -35,6 +34,10 @@ module V1
     end
 
     private
+
+    def invited_users
+      [user] + event_invitees
+    end
 
     def rsvp_user
       Invitation.find_by(user: user, event: @event).update(rsvp: true)
