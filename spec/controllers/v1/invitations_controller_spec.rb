@@ -67,6 +67,19 @@ RSpec.describe V1::InvitationsController do
     end
   end
 
+  describe 'GET #show' do
+    let(:invitation) { user_invitation }
+    before { get :show, id: user_invitation.id }
+    it 'is a successful action' do
+      expect(response).to be_successful
+    end
+
+    it 'gets the correct invitation' do
+      invitation = JSON.parse(response.body).fetch('invitation')
+      expect(invitation.fetch('id')).to eq(user_invitation.id)
+    end
+  end
+
   describe 'PUT #update' do
     let(:invitation) { user_invitation }
     def put_update

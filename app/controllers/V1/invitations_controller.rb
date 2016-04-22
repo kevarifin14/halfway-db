@@ -8,6 +8,11 @@ module V1
       render json: @invitations, root: 'invitations'
     end
 
+    def show
+      @invitation = Invitation.find(invitation_id)
+      render json: @invitation, root: 'invitation'
+    end
+
     def update
       @invitation = Invitation.find(params.require(:id))
       @invitation.update!(invitation_params)
@@ -16,6 +21,10 @@ module V1
     end
 
     private
+
+    def invitation_id
+      params.fetch(:id)
+    end
 
     def invitation_params
       params.require(:invitation).permit(:rsvp)

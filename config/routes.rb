@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         resources :friends, only: [:create]
         resources :groups, only: [:index, :create]
         resources :events, only: [:index, :create, :destroy, :show] do
-          resources :invitations, only: [:index, :update]
+          resources :invitations, only: [:index, :show, :update]
         end
       end
     end
