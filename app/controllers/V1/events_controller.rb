@@ -56,9 +56,11 @@ module V1
     end
 
     def event_invitees
-      params.fetch(:users).map do |user|
-        User.find(user)
-      end
+      invitees = []
+      params.fetch(:users).each do |user|
+        invitees << User.find(user)
+      end unless params.fetch(:users).nil?
+      invitees
     end
   end
 end
