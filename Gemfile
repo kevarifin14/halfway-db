@@ -20,7 +20,6 @@ group :development do
   gem 'annotate'
   gem 'rubocop' # code syntax checker
   gem 'spring'
-  gem 'annotate' # Annotate Rails classes with schema and routes info
 end
 
 group :development, :test do

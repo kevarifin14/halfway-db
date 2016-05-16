@@ -9,6 +9,11 @@
 #  updated_at :datetime         not null
 #  rsvp       :boolean
 #
+# Indexes
+#
+#  index_invitations_on_event_id  (event_id)
+#  index_invitations_on_user_id   (user_id)
+#
 
 require_relative 'user'
 require './app/models/event'

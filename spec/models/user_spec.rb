@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id           :integer          not null, primary key
+#  phone_number :string
+#  pin          :string
+#  verified     :boolean          default(FALSE)
+#  access_token :string
+#  longitude    :decimal(, )
+#  latitude     :decimal(, )
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  username     :string
+#
+
 require 'rails_helper'
 
 RSpec.describe User do
@@ -28,6 +44,7 @@ RSpec.describe User do
     it { is_expected.to have_db_column(:access_token).of_type(:string) }
     it { is_expected.to have_db_column(:latitude).of_type(:decimal) }
     it { is_expected.to have_db_column(:longitude).of_type(:decimal) }
+    it { is_expected.to have_db_column(:username).of_type(:string) }
   end
 
   describe 'scopes' do
