@@ -9,6 +9,7 @@ AllCops:
     - 'config/**/*'
     - 'bin/**/*'
     - 'vendor/bundle/**/*'
+    - 'lib/tasks/*'
   RunRailsCops: true
 
 # We don't care about method length, since we check method cyclomatic

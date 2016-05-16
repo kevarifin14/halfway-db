@@ -11,7 +11,6 @@ RSpec.describe V1::InvitationsController do
     create(Invitation, user: creator, event: event, rsvp: true)
   end
   let(:invitation_params) { attributes_for(Invitation).merge(rsvp: true) }
-
   let(:meeting_point_data) do
     { meeting_point: meeting_point, address: address }
   end
@@ -82,23 +81,23 @@ RSpec.describe V1::InvitationsController do
 
   describe 'PUT #update' do
     let(:invitation) { user_invitation }
-    def put_update
+    def put_update(invitation)
       put :update, id: invitation, invitation: invitation_params
     end
 
     it 'does not create a new invitation' do
-      expect { put_update }.not_to change(Invitation, :count)
+      expect { put_update(invitation) }.not_to change(Invitation, :count)
     end
 
     it 'updates invitation with the correct params' do
-      put_update
+      put_update(invitation)
       invitation.reload
       expect(invitation.rsvp).to eq(true)
     end
 
     context 'all users have rsvped' do
       it 'updates event location if all users have rsvped' do
-        put_update
+        put_update(invitation)
         event.reload
         expect(event.meeting_point).to eq(meeting_point)
         expect(event.address).to eq(address)
@@ -109,7 +108,20 @@ RSpec.describe V1::InvitationsController do
       let(:invitation) { creator_invitation }
 
       it 'does not update event location if all users have not rsvped' do
-        put_update
+        put_update(invitation)
+        event.reload
+        expect(event.meeting_point).to eq(nil)
+        expect(event.address).to eq(nil)
+      end
+    end
+
+    context 'all users rsvp false' do
+      let(:invitation) { creator_invitation }
+      let(:invitation_params) { attributes_for(Invitation).merge(rsvp: false) }
+
+      it 'does not update the location' do
+        put_update(invitation)
+        put_update(user_invitation)
         event.reload
         expect(event.meeting_point).to eq(nil)
         expect(event.address).to eq(nil)

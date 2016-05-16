@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id           :integer          not null, primary key
+#  phone_number :string
+#  pin          :string
+#  verified     :boolean          default(FALSE)
+#  access_token :string
+#  longitude    :decimal(, )
+#  latitude     :decimal(, )
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 # User class for authentication
 class User < ActiveRecord::Base
   after_create :update_access_token!

@@ -17,10 +17,20 @@ module V1
       @invitation = Invitation.find(params.require(:id))
       @invitation.update!(invitation_params)
       render json: @invitation, root: 'invitations'
-      update_halfway_location if @invitation.event.all_replied?
+      update_halfway_location if event_valid?
     end
 
     private
+
+    def event_valid?
+      @invitation.event.all_replied? and not_all_false?
+    end
+
+    def not_all_false?
+      !@invitation.event.invitations.map do |invitation|
+        !invitation.rsvp
+      end.all?
+    end
 
     def invitation_id
       params.fetch(:id)

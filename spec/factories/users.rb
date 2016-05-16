@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id           :integer          not null, primary key
+#  phone_number :string
+#  pin          :string
+#  verified     :boolean          default(FALSE)
+#  access_token :string
+#  longitude    :decimal(, )
+#  latitude     :decimal(, )
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 FactoryGirl.define do
   factory :user do
     phone_number '4088334900'

@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: invitations
+#
+#  id         :integer          not null, primary key
+#  event_id   :integer
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  rsvp       :boolean
+#
+
 require_relative 'user'
 require './app/models/event'
 
